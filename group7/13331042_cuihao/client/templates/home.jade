@@ -1,0 +1,42 @@
+template(name="home")
+	nav.navbar.navbar-default
+		.container-fluid
+			.navbar-header
+				button.navbar-toggle.collapsed(type="button", data-toggle="collapse", data-target="#bs-example-navbar-collapse-1")
+					span.sr-only Toggle navigation
+					span.icon-bar
+					span.icon-bar
+					span.icon-bar
+				a.navbar-brand(href="/") MyHomework
+			#bs-example-navbar-collapse-1.collapse.navbar-collapse
+				ul.nav.navbar-nav
+					li.active
+						a(href="#") 
+							| Welcome
+							span.sr-only (current)
+				ul.nav.navbar-nav.navbar-right
+					li
+						a(href="#") wellcome,
+					li
+						a(href="#") {{> loginButtons}}
+
+
+	div.container.addmargintop2
+		div.row
+			div.col-sm-6.col-md-4.col-md-offset-4
+				if isStudent
+					h1.text-center.login-title Welcome #{firstName}(student). Check your details below:
+						div.signup-wall
+							ul.user-details.center-block
+								li Email    ---> #{email}
+								li First Name ---> #{firstName} 
+								li Last Name ---> #{lastName}
+						a(href='/allhomework', class='text-center new-account') View homework list
+				else
+					h1.text-center.login-title Welcome #{firstName}(teacher). Check your details below:
+						div.signup-wall
+							ul.user-details.center-block
+								li Email    ---> #{email}
+								li First Name ---> #{firstName} 
+								li Last Name ---> #{lastName}
+						a(href='/allhomework', class='text-center new-account') View homework list

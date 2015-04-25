@@ -1,0 +1,9 @@
+template(name="homeworkItem")
+	tr
+		td #
+		td #{title}
+		td #{deadline}
+		td #{author}
+		td.text-right
+			a.btn.btn-info(href="assignmentdetail/#{_id}")
+				i view
