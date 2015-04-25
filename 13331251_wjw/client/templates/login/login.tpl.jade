@@ -1,0 +1,12 @@
+template(name="login")
+    div#login
+       form.main.form
+           div.form-group
+               label.control-label username:
+               input#username(name="username", type="text")
+           div.form-group
+               label.control-label password:
+               input#password(name="password", type="password")
+           button.btn.btn-primary(type="submit") submit
+           button#register.btn.btn-primary(type="button") register
+

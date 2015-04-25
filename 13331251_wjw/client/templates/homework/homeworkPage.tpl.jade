@@ -1,0 +1,9 @@
+template(name="homework-page")
+    div#homework-page
+        h1 #{profile.homework.name}
+        p #{profile.homework.demand}
+        ul#content-list
+            each profile.contents
+                li
+                    a(href='content#{_id')
+                        #{author-name}

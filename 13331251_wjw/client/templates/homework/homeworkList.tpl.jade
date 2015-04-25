@@ -1,0 +1,23 @@
+Template(name="homeworkList")
+    div#homeworkList
+        header
+            form.main.form
+                div.form-group
+                    label.control-label title:
+                    input(name="title", type="text")
+                div.form-group
+                    label.control-label demand:
+                    input(name="demand", type="text")
+                div.form-group
+                    label.control-label deadline:
+                    input(name="deadline", type="text")
+                div.modal-footer
+                    button(type="submit").btn.btn-primary#create-homework Create a new homework
+        
+        ul
+            each homeworks
+                li
+                    a(href="/homework/#{_id}") #{title}
+        
+        
+        

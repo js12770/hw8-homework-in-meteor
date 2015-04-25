@@ -1,0 +1,16 @@
+template(name="register")
+    div#register
+        form.main.form
+            div.form-group
+                label.control-label username:
+                input(name="username", type="text")
+            div.form-group
+                label.control-label password:
+                input(name="password", type="password")
+            div.form-group
+                label.control-label identity:
+                input(name="identity", type="radio", value="teacher")
+                | Teacher
+                input(name="identity", type="radio", value="student")
+                | Student
+            button.btn.btn-primary(type="submit") submit

@@ -1,0 +1,12 @@
+template(name="main")
+    head
+        title Myhomework
+    body
+        div.container
+            header.navbar.navbar-default(role="navigation")
+                div.navbar-header
+                    a.navbar-brand(href="/") Myhomework
+            +if currentUser
+                button.logout.btn.btn-primary Logout
+            div#main
+                +yield 
