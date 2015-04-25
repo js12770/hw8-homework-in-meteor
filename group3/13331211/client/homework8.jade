@@ -1,0 +1,63 @@
+
+body
+	if currentUser
+		+loginButtons
+		+deadlineView
+		+deadlineCreate
+		+upload
+	else
+		+loginButtons
+		h1 Please login!
+
+template(name='deadlineCreate')
+	h2 Create a new deadline:
+	form
+		input(type='text' name='name' placeholder='homework name')
+		input(type='text' name='require' placeholder='requirement')
+		input(type='datetime-local' name='mdate' id='mdate')
+		button(type='submit' id='ddcommit') Commit
+template(name='deadlineView')
+	h2  passed deadlines
+		table#passed
+			tr
+				th Homework name
+				th Requirement
+				th Deadline
+				th View score
+			tbody
+				each plist
+					tr
+						th #{name}
+						th #{requirement}
+						th #{deadline}
+						th
+							if username != "admin"
+								button(class='result') result:#{name}
+							else
+								button(class='score') score:#{name}
+	h2  living deadlines
+		table#living
+			tr
+				th Homework name
+				th Requirement
+				th Deadline
+				th Handin
+			tbody
+				each olist
+					tr
+						th #{name}
+						th #{requirement}
+						th #{deadline}
+						th
+							if username != 'admin'
+								button(class='handin') handin:#{name}
+							else
+								button(class='modify') modify:#{name}
+template(name='upload')
+	h2 finish your homework: #{homeworkname}
+		h2#oldfile #{oldfile}
+		form
+			textarea(rows="10" placeholder=' please finish your homework...' name="file" required)
+			button(type='submit' id='hcommit') Commit
+
+
