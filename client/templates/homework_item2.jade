@@ -1,0 +1,9 @@
+template(name="homeworkItem2")
+	tr
+		th(scope="row") #
+		td #{title}
+		td #{author}
+		td #{score}
+		td.text-right
+			a.btn.btn-info(href="/article/#{_id}")
+				i view
