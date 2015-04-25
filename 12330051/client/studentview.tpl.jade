@@ -1,0 +1,48 @@
+if currentUser
+	if isInRole 'student'
+		div.container
+			div.row
+				div.col-sm-6.col-md-6.col-md-offset-3
+					#user
+						h1.text-center.login-title Welcome #{currentUser.username} student!)
+							br
+							div.panel.panel-info(style = "margin-top:30px")
+								div.panel-heading
+									p 基本信息
+								div.panel-body(style = "padding:0")
+									table.table.table-bordered(style = "margin:0")
+										tbody
+											tr
+												td 姓名
+												td #{currentUser.username}
+											tr
+												td 邮箱
+												td #{currentUser.email}
+			br
+			div.panel.panel-info
+				div.panel-heading
+					p 作业要求：
+				div.panel-body
+					p #{Hrequirment}
+				table.table.table-bordered
+					body
+						tr 
+							td 截止日期
+							td #{Hdeadline}
+			BR
+			div.panel.panel-info
+				div.panel-heading
+					p 已提交的作业:
+				div.panel-body
+					p #{myassignment}
+				table.table.table-bordered
+					body
+						tr 
+							td 分数
+							td #{myscore}
+			BR
+						
+			p 你的作业:
+				textarea(name='studenthomework', rows='6', cols='190')
+				button(class='btn btn-primary updatehomework') 提交
+			a(hclass='text-center new-account signout_') Sign Out
