@@ -10,5 +10,5 @@ template(name="home")
 								li Email    ---> #{user.email}
 								li First Name ---> #{user.firstName} 
 								li Last Name ---> #{user.lastName}
-						a(href = "{{pathFor 'homework'}}", class='text-center new-account') Homework List
+						a(href = "/homework", class='text-center new-account') Homework List
 						a(href = "{{pathFor 'index'}}", class='text-center new-account') Sign Out

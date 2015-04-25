@@ -11,6 +11,6 @@ template(name="index")
 							button(class='btn btn-lg btn-primary btn-block', type='submit') Sign in
 							span.clearfix
 					a(href='/signup', class='text-center new-account') Create an account
-					//-#message
-					//-if message
+					#message
+					if message
 						h1.text-center.error-message #{message}
