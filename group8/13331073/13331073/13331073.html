@@ -1,0 +1,76 @@
+<head>
+  <title>My Homework</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>My Homework</h1>
+      {{> loginButtons}}
+      <form class="new-homework">
+        <input type="text" name="HomeworkTitle" placeholder="Homework Title" />
+        <input type="datetime-local" name="HomeworkDeadline" placeholder="Homework Deadline" />
+        <input type="text" name="HomeworkRequirement" placeholder="Homework Requirement" />
+        <button type="submit">Create Homework</button>
+      </form>
+    </header>
+
+    {{#if currentUser}}
+      <ul>
+        {{#each homeworks}}
+          {{> homework}}
+        {{/each}}
+        {{#each answers}}
+          {{> answer}}
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+</body>
+
+<template name="homework">
+  {{#if isInvalid}}
+    <p>Please Register Your Username In My Rule:<br>The last character in your username represent whether you are a teacher or a student<br>T--Teacher<br>S--Student<br>EXAMPLE:<br>MinaT--A Teacher<br>JiminS--A Student<br>If you don't do so, you will see this page again</p>
+  {{else}}
+    <ul>
+      {{#if isTeacher}}
+        <button class="delete">&times;</button>
+      {{/if}}
+      <h2>Homework</h2>
+      <li>Homework Title: {{HomeworkTitle}}</li>
+      <li>Homework Deadline: {{HomeworkDeadline}}</li>
+      {{#if isTeacher}}
+        <form class="changeDeadline">
+          <input type="datetime-local" name="NewDeadline" placeholder="Type New Deadline" />
+          <button type="submit" class="button">change Deadline</button>
+        </form>
+      {{/if}}
+      <li>Homework Requirement: {{HomeworkRequirement}}</li>
+      {{#if isTeacher}}
+        <form class="changeRequirement">
+          <input type="text" name="NewRequirement" placeholder="Type New Requirement" />
+          <button type="submit" class="button">change Requirement</button>
+        </form>
+      {{/if}}
+      {{#if isStudent}}
+        <form class="new-answer">
+          <input type="text" name="HomeworkAnswer" placeholder="Type Your Answer" />
+          <button type="submit" class="button">Hand in</button>
+        </form>
+      {{/if}}
+    </ul>
+  {{/if}}
+</template>
+
+<template name="answer">
+  <ul>
+    {{#if isOwnerOrTeacher}}
+      <button class="delete_answer">&times;</button>
+      <h2>Answer</h2>
+      <li>Homework Title: {{AnswerTitle}}</li>
+      <li>Homework Deadline: {{AnswerDeadline}}</li>
+      <li>Answer Author: {{AnswerAuthor}}</li>
+      <li>Answer Content: {{AnswerContent}}</li>
+    {{/if}}
+  </ul>
+</template>
