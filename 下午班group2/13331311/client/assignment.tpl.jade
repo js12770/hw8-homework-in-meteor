@@ -1,0 +1,61 @@
+if currentUser
+  if isStudent
+    nav.navbar.navbar-ghost(role='navigation')
+      .container-fluid
+        h4 Hello Student! Here are your assignments:
+        .navbar-header
+    .container
+    .container
+      each assignments
+        .jumbotron.question.col-sm-10.col-sm-offset-1
+          .title #{name}
+          .time #{deadline}
+          .author #{author}
+          .clearfix
+          .text #{content}
+          button.replyBtn.btn.btn-primary.s 提交作业
+          +submit
+          each (homeworks this)
+            .reply.col-sm-10.col-sm-offset-2
+              .replyTxt #{content}
+              .replyAuthor #{studentName}
+
+  else if isTeacher
+    nav.navbar.navbar-ghost(role='navigation')
+      .container-fluid
+        h4 Hello Teacher! May I help you?
+          button.replyBtn.btn.btn-primary.c 发布作业
+        .navbar-header
+    +create
+    .container
+      each assignments
+        .jumbotron.question.col-sm-10.col-sm-offset-1
+          .title #{name}
+          .time #{deadline}
+          .author #{author}
+          .clearfix
+          .text #{content}
+          if (isCurrent this)
+            button.replyBtn.btn.btn-primary.m 修改要求
+          +modify
+          each (homeworks this)
+            .reply.col-sm-10.col-sm-offset-2
+              button.replyBtn.btn.btn-primary 评分
+              .replyTxt #{content}
+              .replyAuthor #{studentName}
+  else
+    div.container
+      div.row
+        div.col-sm-6.col-md-4.col-md-offset-4
+          h1.text-center.login-title Registration Details
+            div.signup-wall
+              form(class='form-signin detail')
+                input(type='text', name='firstName', class='form-control', placeholder='First Name',required)
+                input(type='text', name='lastName', class='form-control', placeholder='Last Name',required)
+                div.myradio
+                  input(type='radio', name='status', value='Teacher')
+                  span.myspan Teacher
+                  input(type='radio', name='status', value='Student', checked='checked')
+                  span.myspan Student
+                input(class='btn btn-lg btn-primary btn-block', type='submit')
+                span.clearfix

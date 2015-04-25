@@ -1,0 +1,46 @@
+.container
+  table.assignment-table
+    thead
+      tr
+        th Title
+        th Teacher
+        th Deadline
+        th My Score
+        th Operation
+    tbody
+      each assignment_list
+        tr
+          td #{title}
+          td #{teacherName}
+          td.before-deadline {{changeTimeFormat deadline}}
+          td
+            each submission
+              if (isMyScore id)
+                |#{score}
+          td 
+            span.detail(id='#{_id}') Detail
+
+  .view-assignment.hidden
+    .form-group
+      label Title
+      input(type='text' name='title' value='#{assignment.title}' readonly)
+
+    .form-group
+      label Teacher
+      input(type='text' name='teacherName' value='#{assignment.teacherName}' readonly)
+
+    .form-group
+      label Deadline
+      input(type='datetime-local' name='deadline' value='#{assignment.deadline}' readonly)
+
+    .form-group
+      label Requirement
+      textarea(rows='15' name='requirement' readonly) #{assignment.requirement}
+
+    form.submit-assignment
+      .form-group
+        input(type='file' name='file' accept='application/x-zip-compressed' required)
+        input(type='hidden' name='assignmentId', value='#{assignment._id}')
+        br
+        input(type='submit' value='Submit')
+        input.back(type='button' value='Back')
