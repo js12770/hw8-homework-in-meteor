@@ -1,0 +1,13 @@
+linux环境下
+在确保已经安装完全meteor之后
+进入主目录
+meteor add iron:router //增添路由包
+meteor //运行
+
+两种身份
+1、admin
+   wangqing@test.com 123456
+2、user
+   chenqf@test.com 123456
+   user@test.com 123456
+碍于老师提供的登录插件原因，无法创建用户，还请使用上面的用户来进行实验

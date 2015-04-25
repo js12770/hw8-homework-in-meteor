@@ -1,0 +1,37 @@
+#detail
+  .ui.horizontal
+    .ui.one.column.grid
+      .group.column
+        .ui.raised.segment
+          a(class = ' ui ribbon label teal return' href='/') 作业详情(返回)
+          .ui.button.positive.submit_modify 修改
+          dl(id='#{_homework._id}')
+            h1.title #{_homework.title}
+            .date 截止时间:
+              small #{_homework.date}
+
+          dt.description #{_homework.description}
+          
+          if isInRole 'admin'
+            dt.attachment 提交情况
+              if attachments
+                each attachments
+                  .attachment
+                    a(class='ui label homework',title="时间：#{date}",href='#') #{name} : #{content} #{remark}
+                    form#sub-homework-remark(data-parsley-validate)
+                      .ui.labeled.input
+                        input(type='text' name='remark' placeholder='分数' data-parsley-trigger='keyup' required)
+                      .ui.button.positive.submit_remark 提交
+              else
+                .attachment
+                  a(class='ui label homework',href='#') 无提交
+                  
+          else if isInRole 'user'
+            dt.attachment
+              a(class='ui label homework',title="时间：#{attachment.date}",href='#') #{attachment.name} : #{attachment.content}
+              form#sub-homework(data-parsley-validate)
+                .ui.labeled.input
+                  input(type='text' name='content' placeholder='内容' data-parsley-trigger='keyup' required)
+                  input(type='text' name='_id' value='' class='_id')
+                .ui.button.positive.submit_content 提交
+  

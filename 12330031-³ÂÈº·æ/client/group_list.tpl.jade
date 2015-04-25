@@ -1,0 +1,29 @@
+#group-list
+  if isGrouped
+    .ui.horizontal.divider 分组完成
+
+    .ui.four.column.grid
+      each groups
+        .group.column
+          .ui.raised.segment
+            a.ui.ribbon.label.teal 第 {{getGroupIndex this}} 组
+            p
+              each this
+                if (isCurrent this)
+                  .ui.label.student.red(title="学号：#{studentId}") #{name}
+                else
+                  .ui.label.student(title="学号：#{studentId}") #{name}
+
+  else
+    .ui.horizontal.divider 分组中……
+    .ui.one.column.grid
+      .group.column
+        .ui.raised.segment
+          a.ui.ribbon.label.teal 所有学生
+          p
+            each ungroups
+              if (isCurrent this)
+                .ui.label.student.red(title="学号：#{studentId}") #{name}
+              else
+                .ui.label.student(title="学号：#{studentId}") #{name}
+
