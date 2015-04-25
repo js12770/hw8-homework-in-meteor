@@ -8,4 +8,9 @@ Router.route('/signup', {name: 'register'});
 
 Router.route('/home', {name: 'home'});
 
-Router.route('/login', {name: 'index'});
+Router.route('/homework', {name: 'homework'});
+
+Router.route('/create', {name: 'create'});
+
+Router.route('/upload', {name: 'upload'});
+
