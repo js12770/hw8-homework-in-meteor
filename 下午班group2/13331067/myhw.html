@@ -1,0 +1,121 @@
+<!-- myhw.html -->
+<head>
+  <title>My-Homework-13331067</title>
+</head>
+
+<body>
+    <header>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#">My Homeworks</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <ul class="nav navbar-nav navbar-left">
+          <li>{{> loginButtons}}</li>
+        </ul>
+
+        </div>
+      </div>
+    </nav>
+    </header>
+
+{{#if currentUser}}
+    <div class='container'>
+    {{#if isTeacher}}
+    <h3>发布一个作业：</h3>
+      <form class="new-hw-requirement">
+        <div class="input-group">
+            <input type="text" class="form-control" name="title" placeholder="作业标题" />
+            <input type="text" class="form-control" name="deadline" placeholder="设置DDL" />
+            
+            <input type="text" class="form-control" name="hwrequirement" placeholder="作业要求" />
+            <input class="btn btn-default" type="submit"/>
+        </div>
+      </form>
+    {{/if}}
+
+    <h3>作业要求列表：</h3>
+      {{#each requirements_all}}
+        {{> requirement}}
+      {{/each}}
+    {{#if isStudent}}
+      <h3>我的提交记录：</h3>
+      {{#each submits_own}}
+        {{> hwlist}}
+      {{/each}}
+    {{/if}}
+    {{#if isTeacher}}
+      <h3>学生们的提交记录：</h3>
+      {{#each submits_all}}
+        {{> hwlist}}
+      {{/each}}
+    {{/if}}
+  </div>
+{{/if}}
+</body>
+
+<template name="requirement">
+    <div class = 'container'>
+    <div class="panel panel-info shorter ">
+      <div class="panel-body">
+      <p><h3>{{title}}</h3></p>
+      <nav>
+        <p>
+            <span class="label label-info ilb">老师：{{teacherName}}</span>
+            <span class="label label-danger ilb">Deadline: {{deadline}}</span>
+        </p>
+      </nav>
+      <span><b>作业要求：</b>{{hwrequirement}}</span>
+
+      {{#if isStudent}}
+      <form class='submithw'>
+        <input type="hidden"  class="form-control shorter" name='hwtitle' value='{{title}}'/>
+        <input type="hidden" name='__id' value='{{_id}}'/>
+        <input type="hidden" name='teacherName' value='{{teacherName}}'/>
+        <input type="text" name="hwcontent" placeholder="提交作业" />
+        <input class="btn btn-default" type="submit"/>
+      </form>
+      {{/if}}
+
+      {{#if isTeacher}}
+      <form class='changeddl'>
+        <input type="text" class="form-control" name="newddl" placeholder="修改DDL" />
+        <input class="btn btn-default" type="submit"/>
+      </form>
+      {{/if}}
+      </div>
+    </div>
+    </div>
+</template>
+
+<template name="hwlist">
+    <div class = 'container'>
+    <div class="panel panel-success shorter">
+      <div class="panel-body">
+      <p><h3>{{hwtitle}}</h3></p>
+      <nav>
+        <p>
+            <span class="label label-success ilb">老师：{{teacherName}}</span>
+            <span class="label label-success ilb">学生：{{studentName}}</span>
+            {{#if isNotScored}}
+                <span class="label label-warning ilb">未改分</span>
+            {{else}}
+                <span class="label label-info ilb">分数：{{score}}</span>   
+            {{/if}}
+        </p>
+      </nav>
+      <span><b>作业内容：</b>{{hwcontent}}</span>
+      {{#if isTeacher}}
+      <form class='givescore'>
+        <input type="text"  class="form-control shorter" name="newscore" placeholder="打分" />
+        <input class="btn btn-default" type="submit"/>
+      </form>
+      {{/if}}
+      </div>
+    </div>
+    </div>
+</template>
