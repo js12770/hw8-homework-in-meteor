@@ -1,0 +1,331 @@
+/* CSS declarations go here */
+.navigation
+{
+    float:left;
+    width: 20%;
+    height: 100%;
+    border: 2px solid #00B7FF;
+    padding-top: 30px;
+    padding-right: 30px;
+}
+
+.navigation li
+{
+    list-style: none;
+    text-align: center;
+    font-size: 30px;
+    margin: 40px 0;
+    border: 5px solid #afd9ee;
+    border-radius: 20%;
+    cursor: pointer;
+}
+
+#main-container
+{
+    width: 100%;
+    height: 600px;
+}
+
+.right-container
+{
+    width:80%;
+    height: 100%;
+    float: left;
+}
+
+#logoutArea
+{
+    float:right;
+    margin-right: 50px;
+}
+
+#logoutArea li
+{
+    margin-top: 30px;
+    height: 20px;
+    line-height: 20px;
+    font-size : 15px;
+}
+
+#logoutArea input
+{
+    border-radius: 20%;
+}
+
+body
+{
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a
+{
+    color: #00B7FF;
+}
+
+#firstImage
+{
+    width: 100%;
+    height: 100%;
+}
+
+header
+{
+    height:80px;
+    background: #0f0f0f;
+    margin-top: -10px;
+    padding-left: 350px;
+}
+
+header ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+header li
+{
+    position: relative;
+    line-height: 80px;
+    height: 80px;
+    font-size: 30px;
+    float: left;
+    list-style-type: none;
+    padding: 0 30px;
+    cursor: pointer;
+}
+
+header li a
+{
+    color: #ffffff;
+}
+
+footer
+{
+    height:80px;
+    background: #0f0f0f;
+    text-align: center;
+}
+
+footer span
+{
+    position: relative;
+    line-height: 80px;
+    height: 80px;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+form
+{
+    font-size: 12px;
+    line-height: 1.5;
+    position: relative;
+}
+
+#login-container
+{
+    position: absolute;
+    width: 284px;
+    height: 293px;
+    left: 50%;
+    top: 50%;
+    margin-left: -142px;
+    margin-top: -146px;
+    overflow: hidden;
+    padding: 0 31px 0 33px;
+    text-align: center;
+}
+
+#username
+{
+    padding-bottom: 9px;
+    height: 49px;
+    position: relative;
+}
+
+#password
+{
+    padding-bottom: 18px;
+    height: 58px;
+    position: relative;
+}
+
+.input-text-area
+{
+    float: left;
+    width: 179px;
+    height: 40px;
+    padding-bottom: 2px;
+    margin-bottom: 5px;
+    display: block;
+}
+
+.label-area
+{
+    float: left;
+    width: 39px;
+    height: 38px;
+    display: block;
+}
+
+#username span
+{
+    background-position: -2px 5px;
+}
+
+#password span
+{
+    background-position: -42px 5px;
+}
+
+.background-icon-area
+{
+    width: 39px;
+    height: 38px;
+    display: block;
+    background-color: #aaabab;
+    background-image: url("images/1Ybqf7665d.png");
+    background-repeat: no-repeat;
+}
+
+.submit-button1 input
+{
+    width: 220px;
+    height: 40px;
+    text-align: center;
+    cursor: pointer;
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #ffff00;
+    margin: 5px 0;
+    background-color: #e66e1e;
+}
+
+#register-container
+{
+    position: absolute;
+    width: 280px;
+    height: 400px;
+    left: 50%;
+    top: 40%;
+    margin-left: -140px;
+    overflow: hidden;
+    padding: 0 30px;
+    text-align: center;
+}
+
+.span-area
+{
+    width: 40px;
+    height: 38px;
+    line-height: 38px;
+    display: block;
+    font-size: 13px;
+    vertical-align: middle;
+}
+
+.submit-button2 input
+{
+    width: 190px;
+    height: 35px;
+    text-align: center;
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #000000;
+    margin: 5px 0;
+    background-color: #ffffff;
+}
+
+.submit-button3 input
+{
+    width: 190px;
+    height: 35px;
+    text-align: center;
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 40px;
+    color: #000000;
+    margin: 10px 0;
+    background-color: #ffffff;
+}
+
+.input-text-area2
+{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.input-text-area3
+{
+    width: 100%;
+    height: 200px;
+    text-align: center;
+}
+
+#list-container h1
+{
+    text-align: center;
+}
+
+table
+{
+    width: 100%;
+    margin-top: 30px;
+}
+
+th
+{
+    text-align: center;
+    border: 3px solid #000000;
+}
+
+td
+{
+    text-align: center;
+    border: 3px solid #000000;
+}
+
+#uploader-container
+{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 300px;
+    height: 300px;
+    margin-left: -150px;
+    text-align: center;
+}
+
+.invisible
+{
+    visibility: hidden;
+}
+
+#uploader-button
+{
+    width: 100%;
+    margin: 30px 0;
+    border: 2px solid #0f0f0f;
+    cursor: pointer;
+}
+
+#submit-button
+{
+    width: 50%;
+    text-align: center;
+}
+
+#filename
+{
+    text-align: center;
+    width: 300px;
+    margin: 20px 0;
+}
+
+select
+{
+    width: 100%;
+}
