@@ -1,0 +1,115 @@
+<head>
+    <title>homework</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <script type="text/javascript" src="homework.js"></script>
+</head>
+
+<body>
+    {{> loginButtons }}
+    {{#if islogin}}
+        {{#if isteacher}}
+            {{> publish}}
+        {{/if}}
+        {{> show_question}}
+    {{else}}
+        <div>
+            <h1 class='text-center'>Welcome!</h1>
+        </div>
+    {{/if}}
+</body>
+
+<template name="publish">
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-6 col-md-4 col-md-offset-4'>
+                <h1 class='text-center login-title'> Publish a question:</h1>
+                <div class= 'account-wall form-signin'>
+                    <form>
+                        <input type='text' name='title' class='form-control' placeholder='Title' required autofocus>
+                        <input type='text' name='requirements' class='form-control' placeholder='Requirements' required>
+                        <input type='datetime-local' name='deadline' class='form-control' placeholder='Deadline' required>
+                        <input type='submit' class='button publish btn btn-lg btn-primary btn-block' value='Publish'>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name='show_question'>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-6 col-md-4 col-md-offset-4'>
+                <h1 class='text-center login-title'> Questions:</h1>
+                {{#each questions}}
+                    <div class='account-wall'>
+                        <p class='text-left'> Title: {{title}} </p>
+                        <p class='text-left'> Requirements: {{requirements}} </p>
+                        <p class='text-left'> Deadline: {{deadline}} </p>
+                        {{#if isteacher }}
+                            {{> update }}
+                            {{> score }}
+                        {{else}}
+                            {{> answer }}
+                        {{/if}}
+                    </div>
+                {{/each}}
+            </div>
+        </div>
+    </div>
+</template>
+
+<template name='update'>
+    <div class='form-signin'>
+        <h1 class='text-center login-title'> Update the requirements or deadline:</h1>
+        <div class='account-wall'>
+            <form>
+                <textarea row='10' col='20' name='content' class='form-control' placeholder='requirements'></textarea>
+                <input type='datetime-local' name='deadline_update' class='form-control' placeholder='Deadline'>
+                <input type='submit' class='btn btn-success update' value='Update'>
+            </form>
+        </div>
+    </div>
+</template>
+
+<template name='answer'>
+    <div class='form-signin'>
+        <h1 class='text-center login-title'> Answer this question  </h1>
+        <div class='account-wall'>
+            {{#if answer}}
+                <p class='text-left'>My Answer: {{answer.content}} </p>
+                {{#if answer.score}}
+                    <p class='text-left'>My score: {{answer.score}} </p>
+                {{/if}}
+            {{/if}}
+            <form>
+                <textarea row='10' col='20' name='answer' class='form-control' placeholder='Answer' required></textarea>
+                <input type='submit' class='btn btn-success answer' value='Answer'>
+            </form>
+        </div>
+    </div>
+</template>
+
+<template name='score'>
+    <div class='form-signin'>
+        <h1 class='text-center login-title'> Give Score </h1>
+        <div class='account-wall'>
+            {{#each answers}}
+                <p class='text-left'>Student Name: {{student_name}} </p>
+                <p class='text-left'>Student Answer: {{content}} </p>
+                {{#if score}}
+                    <p class='text-left'>Score: {{score}} </p>
+                {{/if}}
+                <p class='text-left'>Give score: </p>
+                <form>
+                    <input type='text' name='question_id' style='display:none' value='{{question_id}}'>
+                    <input type='text' name='student_id' style='display:none' value='{{student_id}}'>
+                    <input type='text' name='score' class='form-control' placeholder='Score'>
+                    <input type='submit' class='btn btn-success score' value='Give Score'>
+                </form>
+                <p class='text-center'>----------------------------------------------</p>
+            {{/each}}
+        </div>
+    </div>
+</template>
