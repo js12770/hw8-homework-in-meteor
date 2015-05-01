@@ -3,7 +3,7 @@ Template['myhomework'].helpers {
       homeworks1 = []
       homeworks = Homework.find!fetch!
       for homework in homeworks
-        if (Date.parse homework.ddl) > (Date.parse Date!)
+        if (Date.parse homework.date) > (Date.parse Date!)
           homeworks1.push homework
       homeworks1
 
@@ -11,13 +11,16 @@ Template['myhomework'].helpers {
       homeworks2 = []
       homeworks = Homework.find!fetch!
       for homework in homeworks
-        if (Date.parse homework.ddl) < (Date.parse Date!)
+        if (Date.parse homework.date) < (Date.parse Date!)
           homeworks2.push homework
       homeworks2
       
     myhomeworks: ->
       myhomeworks = Studenthomework.find!fetch!
       myhomeworks
+
+    is-student: ->
+      Meteor.user! and Meteor.user! .username != "teacher"
 }
 
 Template['myhomework'].events {

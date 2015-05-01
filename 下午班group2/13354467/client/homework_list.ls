@@ -3,7 +3,7 @@ Template['homework_list'].helpers {
       homeworks1 = []
       homeworks = Homework.find!fetch!
       for homework in homeworks
-        if (Date.parse homework.ddl) > (Date.parse Date!)
+        if (Date.parse homework.date) > (Date.parse Date!)
           homeworks1.push homework
       homeworks1
 
@@ -11,13 +11,16 @@ Template['homework_list'].helpers {
       homeworks2 = []
       homeworks = Homework.find!fetch!
       for homework in homeworks
-        if (Date.parse homework.ddl) < (Date.parse Date!)
+        if (Date.parse homework.date) < (Date.parse Date!)
           homeworks2.push homework
       homeworks2
 
     studenthomeworks: ->
       studenthomeworks = Studenthomework.find {hwid:Session.get 'current-hwid'}
       studenthomeworks
+
+    is-teacher: ->
+      Meteor.user! and Meteor.user! .username is "teacher"
 }
 
 Template['homework_list'].events {
@@ -39,14 +42,31 @@ Template['homework_list'].events {
     ev.prevent-default!
     Homework.update {_id : this._id}, {$set:{require: ($ event.target .parent! .parent! .find 'textarea[name=require]').val!}}
 
-  'click .modifyddl': (ev, tpl)-> 
+  'submit form': (ev, tpl)-> 
     ev.prevent-default!
     ddlstring = ($ event.target .parent! .parent! .find 'input[name=ddl]').val!
-    ddl = new Date ddlstring
-    Homework.update {_id : this._id}, {$set:{ddl: ddl}}
+    date = new Date ddlstring
+    ddl = format date
+    Homework.update {_id : this._id}, {$set:{ddl: ddl, date:date}}
 
   'click .give': (ev, tpl)-> 
     ev.prevent-default!
     Studenthomework.update {_id : this._id}, {$set:{score: ($ event.target .parent! .parent! .find 'input[name=score]').val!}}
 
 }
+
+format = (date)->
+  time = date.getTime! - 28800000
+  date.setTime time
+  year = addzore date.get-full-year!
+  month = addzore (date.get-month! + 1)
+  day = addzore date.get-date!
+  hour = addzore date.get-hours!
+  minute = addzore date.get-minutes!
+  year+'/'+month+'/'+day+' '+hour+':'+minute
+
+addzore = (s) ->
+  str = s.toString!
+  if str.length < 2
+    str = '0' + str
+  str
