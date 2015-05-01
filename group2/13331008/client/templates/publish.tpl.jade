@@ -1,0 +1,22 @@
+#publish
+  button(type='button').homepage-button.ui.button.green homepage
+
+  .ui.divider.hidden
+
+  form.publish.ui.form.segment
+    .ui.label.ribbon.teal publish an assignment
+
+    .ui.divider.hidden
+
+    .two.fields
+      .field
+        label title
+        input(type='text', name='title', required)
+      .field
+        label deadline
+        input(type='date', name='deadline', required)
+    .field
+      label content
+      textarea(name='content')
+    div
+      button.publish-button.ui.button.blue publish
