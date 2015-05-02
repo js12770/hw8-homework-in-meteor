@@ -1,0 +1,25 @@
+<template name="createNew">
+	<form class="main form">
+		<div class="form-group">
+			<label class="control-label" for="name">Homework Name</label>
+			<div class="controls">
+				<input name="name" id="name" type="text" placeholder="Name of the Homework" class="form-control" required />
+			</div>
+		</div>
+		<div class="form-group">
+			<label class="control-label" for="description">{{label}}</label>
+			<div class="controls">
+				<textarea rows="11" id="description" name="description" class="form-control"></textarea>
+			</div>
+		</div>
+		{{#if isTeacher}}
+			<div class="form-group">
+				<label class="control-label" for="deadline">Deadline</label>
+				<div class="controls">
+					<input type="date" name="ddl" id="ddl" class="form-control" required />
+				</div>
+			</div>
+		{{/if}}
+		<input type="submit" value="Submit" class="btn btn-primary" />
+	</form>
+</template>
