@@ -1,0 +1,205 @@
+<head>
+  	<title>myHomework</title>
+  	<link rel='stylesheet' type='text/css' href='/stylesheets/bootstrap.min.css' />
+  	<script type="text/javascript" src='/js/bootstrap.min.js'></script>
+  	<script type="text/javascript" src='/js/bootstrap-datetimepicker.min.js'></script>
+  	<script type="text/javascript" src='/js/bootstrap-datetimepicker.zh-CN.js'></script>
+  	<script type="text/javascript" src='/js/request.js'></script>
+</head>
+<body>
+	{{#if user}}
+	<div class='container'>
+			<ul class='nav nav-tabs'>
+				<li role='presentation' class='{{#if request}}active{{/if}}'>
+					<a href='#' class='request'>作业要求</a>
+				</li>
+				<li role='presentation' class='{{#if submit}}active{{/if}}'>
+					{{#if student}}
+						<a href='#' class='submit'>提交作业</a>
+					{{else}}
+						<a href='#' class='submit'>创建作业要求</a>
+					{{/if}}
+				</li>
+				<li role='presentation' class='{{#if homework}}active{{/if}}'>
+					<a href='#' class='homework'>查看作业</a>
+				</li>
+				<button style='float:right' class='btn btn-link' id='logout'>Logout</button>
+			</ul>
+			{{#if request}}
+				<div class='modal fade' id='myModal' tabindex='-1' role='dialog' aria-hidden='true'>
+					<div class='modal-dialog'>
+						{{#if updateRequest}}
+						<div class='modal-content'>
+							<div class='modal-body'>
+								<form class='updateRequest'>
+									<div  class='form-group'>
+										<label>Title</label>
+										<input class="form-control" type='text' name='title' value='{{requestContent.title}}'/>
+									</div>
+									<div class='form-group'>
+										<label>Deadline</label>
+										<input class="form-control" type='date' name='deadline' value='{{requestContent.deadline}}'/>
+									</div>
+									<div class='form-group'>
+										<label>Content</label>
+										<textarea class="form-control" rows='10' cols='10' id='content'>{{requestContent.content}}</textarea>
+									</div>
+									<button type='submit' class='btn btn-info'>确定</button>
+								</form>
+							</div>
+						</div>
+						{{else}}
+						<div class='modal-content'>
+							<div class='modal-header' style='text-align:center'>
+								<h2 id='title'>{{requestContent.title}}</h2>
+								<p id='deadline' style='{{#if timeout}}color:red{{else}}color:green{{/if}}'>{{requestContent.deadline}}{{#if timeout}}(已截止){{else}}(未截止){{/if}}</p>
+							</div>
+							<div class='modal-body'>
+								<p id='content' style='color:blue'></p>
+							</div>
+							<div class='modal-footer'>
+								<button style='float:right' class='btn btn-info' id='change' disabled='{{canChange}}'>修改</button>
+							</div>
+						</div>
+						{{/if}}
+					</div>
+				</div>
+				<ol>
+				{{#each requests}}
+					<li><p><button value='{{_id}}' class='btn btn-link' id='requestView'>{{title}}</button></p></li>
+				{{/each}}
+				</ol>
+			{{/if}}
+			{{#if submit}}
+				<div class='container' style='width:500px;'>
+				{{#if student}}
+					<form class='submitHomework' style='margin:10px;'>
+						<div class='form-group'>
+							<label>请选择这次提交的作业类型：</label>
+							<select name='request' class="form-control">
+								{{#each requests}}
+								<option value='{{_id}}'>{{title}}</option>
+								{{/each}}
+							</select>
+						</div>
+						<div class='form-group'>
+							<label>请选择提交的作业：</label>
+							<input type="file"  id="homework" class="form-control" style='color:red;background: #eef5f7;'/>
+						</div>
+						<button type='submit' class='btn btn-info'>确定</button>
+					</form>
+				{{else}}
+					<form class='createRequest' style='margin:10px;'>
+						<div  class='form-group'>
+							<label>Title</label>
+							<input class="form-control" type='text' name='title' />
+						</div>
+						<div class='form-group'>
+							<label>Deadline</label>
+							<input class="form-control" type='date' name='deadline'/>
+						</div>
+						<div class='form-group'>
+							<label>Content</label>
+							<textarea style='resize:none;' class="form-control" rows='10' cols='10' id='content'></textarea>
+						</div>
+						<button style='float:right;' type='submit' class='btn btn-info'>确定</button>
+					</form>
+				{{/if}}
+				</div>
+			{{/if}}
+			{{#if homework}}
+				<div class='modal fade' id='checkModal' tabindex='-1' role='dialog' aria-hidden='true'>
+					<div class='modal-dialog'>
+						<div class='modal-content'>
+							{{#if check}}
+								<div class='modal-body'>
+									{{#if timeout}}
+									<form class='checkHomework'>
+										<div  class='form-group'>
+											<label>Score</label>
+											<input class="form-control" type='text' name='score' />
+										</div>
+										<div class='form-group'>
+											<label>Comment</label>
+											<textarea style='resize:none;' class="form-control" rows='10' cols='10' id='comment'></textarea>
+										</div>
+										<div class='form-group'>
+											<button type='submit' class='btn btn-info'>确定</button>
+										</div>
+									</form>
+									{{else}}
+										<p style='color:red'>还未到截止时间</p>
+									{{/if}}
+								</div>
+							{{else}}
+							<div class='modal-body'>
+								{{#if schecked}}
+									<label>Score：</label> <br />
+									<p style='color:green'>{{homeContent.score}}</p>
+									<label>Comment：</label>					
+								{{else}}
+									<p style='color:red;'>老师暂未评分!</p>
+								{{/if}}
+								<p id='comment' style='color:blue;'></p>
+							</div>
+							{{/if}}
+						</div>
+					</div>
+				</div>
+				<ol>
+				{{#each homeworks}}
+					<li><div>
+						<p>{{filename}}</p>
+						{{#if teacher}}
+							{{#if checked}}
+								<button id='look' value='{{_id}}' class='btn btn-info'>查看</button>
+							{{else}}
+								<button id='check' value='{{_id}}' class='btn btn-warning'>评分</button>
+							{{/if}}
+						{{else}}
+							<button id='look' value='{{_id}}' class='btn btn-info'>查看</button>
+						{{/if}}
+							
+					</div></li>
+				{{/each}}
+				</ol>
+			{{/if}}
+	</div>
+	{{else}}
+	<div class='container' style='width:500px'>
+		{{#if register}}
+			<form class='register' style='margin-top:20%'>
+			  <div class="form-group">
+			    <label for="username">Username[字母或数字]</label>
+			    <input type="text" class="form-control" id="username" placeholder="Username">
+			  </div>
+			  <div class="form-group">
+			    <label for="password">Password[字母或数字]</label>
+			    <input type="password" class="form-control" id="password" placeholder="Password">
+			  </div>
+			  <div class="form-group">
+			    <label>
+			      <input type="radio" name='role' value='student' checked='true'> Student <br />
+			      <input type="radio" name='role' value='teacher'> Teacher
+			    </label>
+			  </div>
+			  <button type="submit" class="btn btn-success" id='registerSub'>确定</button>
+			  <button style='float:right' class='btn btn-warning' id='login'>返回</button>
+			</form>
+		{{else}}
+			<form class='login' style='margin-top:20%'>
+			  <div class="form-group">
+			    <label for="username">Username</label>
+			    <input type="text" class="form-control" id="username" placeholder="Username">
+			  </div>
+			  <div class="form-group">
+			    <label for="password">Password</label>
+			    <input type="password" class="form-control" id="password" placeholder="Password">
+			  </div>
+			  <button type="submit" class="btn btn-success" id='loginSub'>登录</button>
+			  <button style='float:right' class='btn btn-warning' id='logup'>注册</button>
+			</form>
+		{{/if}}
+	</div>
+	{{/if}}
+</body>
