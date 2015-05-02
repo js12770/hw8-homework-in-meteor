@@ -1,0 +1,39 @@
+div
+	form(class='form-signin', style='float:right')
+		p(style='{color:red}')=homeworkCreateError
+		input(type='text', name='homeworkName', class='form-control', placeholder='Homework Name',required, autofocus)
+		input(type='text', name='homeworkRequirement', class='form-control nomargin', placeholder='Homework Requirement', required)
+		input(type='date', name='deadlineDate', class='form-control', required)
+		input(type='time', name='deadlineTime', class='form-control', required)
+		button(class='btn btn-crho btn-primary btn-block') Add new homework 
+		span.clearfix
+	label(class='allowScoreBeforeDeadline') Allow Giving Score Before Deadline
+		input(type='checkbox', name='checkbox')
+	h3 All Homeworks
+	ol
+		each homeworks
+			li
+				p Name: #{name}
+				p Reqiurement: #{requirement}
+				unless testOutOfDeadline deadline
+					form(style="", class='newRequirement')
+						input(type='text', name='text', placeholder="New Reqiurement")
+				p Dealine: #{deadline}
+				form(style="", class='newDealine')
+					input(type='date', name='newDealineDate', required)
+					input(type='time', name='newDealineTime', required)
+					button(class='btn', type='submit') Change Deadline
+				h4 Submited Student Name: 
+				ol
+					each this.submit
+						li
+							p Student: #{username}
+							p LastSubmit: #{date}
+							p score: #{score}
+							if deadlineOfHomeworkOut this.homeworkName
+								form(class='newScore')
+									input(type="text", name='text', placeholder="New Score")
+							unless deadlineOfHomeworkOut this.homeworkName
+								if allowScoreBeforeDeadline
+									form(class='newScore')
+										input(type="text", name='text', placeholder="New Score")
