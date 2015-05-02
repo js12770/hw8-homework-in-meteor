@@ -1,0 +1,58 @@
+#assignmentList.ui.segment
+
+  .ui.label.ribbon.teal AssignmentList
+
+  if isTeacher
+    button.publish-button.ui.button.green publish
+
+  .ui.divider.hidden
+
+  .ui.form
+    .two.fields
+      .field
+        select.ui.dropdown.assignmentList(name='assignment')
+          option(value='') Assignment
+          each assignmentList
+            option(value='#{_id}') #{title}
+
+      .field
+
+
+  if selectedAssignment
+    if isAfterDeadline
+      if isTeacher
+        button.modify-button.ui.button.orange(disabled) modify
+      button.submit-button.ui.button.teal(disabled) submit
+
+    else
+      if isTeacher
+        button.modify-button.ui.button.orange modify
+      button.submit-button.ui.button.teal submit
+
+  .ui.divider.hidden
+
+  if selectedAssignment
+    form.ui.form.segment
+      .two.fields
+        .field
+          label title
+          input(type='text', name='title', value='#{selectedAssignment.title}', disabled)
+        .field
+          label deadline
+          input(type='date', name='deadline', value='#{selectedAssignment.deadline}', disabled)
+      .field
+        label content
+        textarea(name='content', disabled) #{selectedAssignment.content}
+
+  else
+    form.ui.form.segment
+      .two.fields
+        .field
+          label title
+          input(type='text', name='title', disabled)
+        .field
+          label deadline
+          input(type='date', name='deadline', disabled)
+      .field
+        label content
+        textarea(name='content', disabled)
