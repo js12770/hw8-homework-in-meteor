@@ -1,3 +1,10 @@
-这是最初版本，只完成了deadlinecreate和handin，并且没有区分teacher和student
-
-点按handin按钮，下方的提交作业窗口会显示出当前编辑的作业和最近一次的提交
+系统默认老师的用户名是admin，运行时需要先注册名为admin的用户。
+功能：
+用户admin：
+	可以通过点击passeddeadlines表格中每行后面的score来给本作业的所有提交评分
+	可以新建deadline
+	可以通过点击livingdeadlines表格中每行后面的modify修改本作业的deadline
+其他用户：
+	登录进去可以看到livingdeadlines和passeddeadlines表格
+		passeddeadlines里面可以看到各个作业的得分
+		livingdeadlines中可以点击handin进行提交，点击后下方会出现一个完成作业的文本框和上次提交的内容
