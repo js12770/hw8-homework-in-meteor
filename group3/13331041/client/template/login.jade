@@ -1,0 +1,13 @@
+template(name="login")
+  nav(class="navbar navbar-inverse",role="navigation")
+    .container-fluid
+      .navbar-header
+        button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation")
+          span(class="sr-only") Toggle navigation
+          span(class="icon-bar")
+          span(class="icon-bar")
+          span(class="icon-bar")
+        a(class="navbar-brand" href="/login") Homework
+      div(class="collapse navbar-collapse" id="navigation")
+        ul(class = "nav navbar-nav navbar-right")
+          +loginButtons
