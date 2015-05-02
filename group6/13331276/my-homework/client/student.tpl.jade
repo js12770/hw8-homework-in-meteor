@@ -1,0 +1,18 @@
+ol
+	each homeworks
+		li
+			p Name: 
+				b #{name}
+			p Dealine: 
+				b #{deadline}
+			p Reqiurement: 
+				b #{requirement}
+			p Last Submit: 
+				b=findLastSubmit.date
+			p Score:
+				b=findLastSubmit.score
+			if testOutOfDeadline this.deadline
+				b deadline has passed
+				br
+			else
+				button(class='btn submitHomework', type='file') submit
