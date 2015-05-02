@@ -1,0 +1,36 @@
+<template name="submitItem">
+	<div class="panel panel-success">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<b>Homework: {{name}}</b> 
+				&nbsp;Submitted by: {{student}}
+			</h3>
+		</div>
+		<br>
+		<div class="panel-body">
+			{{content}}
+		</div>
+		<hr>
+		<p>
+			&nbsp; 
+			Latest Submit: {{latest}} Deadline: {{ddl}} 
+			{{scored}}
+			&nbsp;
+			<a class="btn btn-default btn-xs" style="{{display}}" href="{{pathFor 'editSubmitPage'}}"> 
+				<span class="glyphicon glyphicon-edit" aria-hidden="true"></span> 
+				Edit
+			</a>
+		</p>
+
+		{{#if shouldBeScored}}
+			<form class="main form">
+				<div class="form-group">
+					&nbsp;<span for="score"> Score:</span>
+				    <input name="score" id="score" type="number" style="display:inline-block">
+					<input type="submit" value="OK" class="btn btn-primary submit"/>
+				</div>
+			</form>
+		{{/if}}
+	</div>
+	<br>
+</template>
