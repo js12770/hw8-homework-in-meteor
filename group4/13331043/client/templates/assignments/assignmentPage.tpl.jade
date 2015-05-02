@@ -1,0 +1,25 @@
+.main
+  .assignment-page
+    ul
+      li 题目：#{assignment.title}
+      li 老师：#{assignment.authorName}
+      li 简述：#{assignment.description}
+      li 截止日期：#{assignment.deadline}
+      li 要求：#{assignment.requirement}
+      if isTeacher
+        li
+          a(href='/assignments/#{assignment.url}/homeworks') 学生作业
+        if overtime
+          br
+        else
+          li
+            a(href='/assignments/#{assignment.url}/modify') 修改信息
+
+  if overtime
+    p.bg-danger
+      span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+      | 截止日期已到
+
+  if isStudent
+    .student-homework
+      +studentHomework
