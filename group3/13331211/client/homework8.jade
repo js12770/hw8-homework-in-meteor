@@ -1,10 +1,14 @@
-
+head
+	link(href = 'bootstrap-theme.css' rel = 'text/css')
 body
 	if currentUser
 		+loginButtons
 		+deadlineView
-		+deadlineCreate
-		+upload
+		if isAdmin
+			+deadlineCreate
+			+score
+		else
+			+upload
 	else
 		+loginButtons
 		h1 Please login!
@@ -18,12 +22,16 @@ template(name='deadlineCreate')
 		button(type='submit' id='ddcommit') Commit
 template(name='deadlineView')
 	h2  passed deadlines
-		table#passed
+		table(class='table table-striped' id = 'passed')
 			tr
 				th Homework name
 				th Requirement
 				th Deadline
-				th View score
+				th 
+					if isNotAdmin
+						p View score
+					else
+						p Score
 			tbody
 				each plist
 					tr
@@ -31,17 +39,21 @@ template(name='deadlineView')
 						th #{requirement}
 						th #{deadline}
 						th
-							if username != "admin"
-								button(class='result') result:#{name}
+							if isNotAdmin
+								p #{score}
 							else
-								button(class='score') score:#{name}
+								button(class='score') score
 	h2  living deadlines
-		table#living
+		table(class='table table-striped' id = 'living')
 			tr
 				th Homework name
 				th Requirement
 				th Deadline
-				th Handin
+				th 
+					if isNotAdmin
+						p Handin
+					else
+						p Modify
 			tbody
 				each olist
 					tr
@@ -49,15 +61,38 @@ template(name='deadlineView')
 						th #{requirement}
 						th #{deadline}
 						th
-							if username != 'admin'
-								button(class='handin') handin:#{name}
+							if isNotAdmin
+								button(class='handin') handin
 							else
-								button(class='modify') modify:#{name}
+								button(class='modify') modify
 template(name='upload')
-	h2 finish your homework: #{homeworkname}
-		h2#oldfile #{oldfile}
-		form
-			textarea(rows="10" placeholder=' please finish your homework...' name="file" required)
-			button(type='submit' id='hcommit') Commit
+	if show
+		if homeworkname
+			h2 finish your homework: #{homeworkname}
+				h2#oldfile #{oldfile}
+				form
+					textarea(rows="10" placeholder=' please finish your homework...' name="file" required)
+					button(type='submit' id='hcommit') Commit
+		else
+			h3 Click the handin button to finish a certain homework!
+	else
+		h3 No homework now, enjoy your holiday~
+
+template(name='score')
+	if Allhandins
+		h3 Here're all handins:
+		ul
+			each Allhandins
+				li Homework name:#{name}
+				li Homework content:#{file}
+				li Homework author: #{owner}
+				li
+					input(type='text' name='newscore' placeholder='input your score')
+					button(type='submit' class='scorebt') Commit
+	else
+		h3 No handin selected!
+		h3 Click the score button to see handins of a certain homework!
+
+
 
 
