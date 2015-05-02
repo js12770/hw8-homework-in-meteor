@@ -1,0 +1,158 @@
+<head>
+  <title>My Homework</title>
+</head>
+
+<body>
+	<div class='navbar navbar-inverse navbar-fixed-top'>
+		<div class='navbar-header'>
+			<a class='navbar-brand'>My Homework</a>
+		</div>
+		<div class='navbar-collapse collapse'>
+			<div class='nav navbar-nav navbar-right'>
+				{{> loginButtons}}
+			</div>
+		</div>
+	</div>
+	<div style='margin-top:50px'></div>
+	<div class='content'>
+		{{#if isTeacher}}
+			<div class='part-t'>
+				<div class='center'>
+					<h3><strong>Publish Homework</strong></h3>
+				</div>
+				<div class='part-t-1'>
+					{{> publishAssignment}}
+				</div>
+			</div>
+		{{/if}}
+		<div class='part-1'>
+			<div class='center'>
+				<h3><strong>Assignments</strong></h3>
+			</div>
+			{{> showAssignments}}
+		</div>
+		<div class='part-2'>
+			<div class='center'>
+				<h3><strong>Submissions</strong></h3>
+			</div>
+		  	{{> uploadedAssignments}}
+		</div>
+	</div>
+</body>
+
+<template name="publishAssignment">
+	<div class='publish-block'>
+		<form>
+			<label>Title</label>
+			<input type='text' class='form-control input-small' name='title' required>
+			<label>Content</label>
+			<textarea type='text' rows='15' class='form-control' name='content' required></textarea>
+			<label>Deadline</label>
+			<input type='datetime-local' class='form-control' name='deadline' required>
+			<input type='submit' class='btn btn-small btn-primary btn-block' value='Submit'>
+		</form>
+	</div>
+</template>
+
+<template name="showAssignments">
+	{{#each assignments}}
+	<div class='show-block'>
+		<a class='card'>
+			<p class='label label-info'>{{title}}</p><br />
+			<label> created at</label>
+			<p class='label label-warning'>{{createdAtx}}</p><br />	
+			<label> until</label>
+			<p class='label label-warning'>{{ddlx}}</p>
+		</a>
+		<div class='hide assignment assignment{{_id}}'>
+			{{#if isTeacher}}
+				{{> uploadContent}}
+				{{> uploadDdl}}
+			{{else}}
+				{{> uploadAnswer}}
+			{{/if}}
+		</div>
+	</div>
+	{{/each}}
+</template>
+
+<template name="uploadAnswer">
+	<form>
+		<input type='hidden' name="hw_id" value='{{_id}}'>
+		<label>Title</label>
+		<input type='text' class='form-control input-small' name='title' value={{title}} disabled>
+		<label>Content</label>
+		<textarea type='text' rows='15' class='form-control' name='content' required disabled>{{content}}</textarea>
+		<label>Answer</label>
+		<textarea type='text' rows='15' class='form-control' name='answer' required></textarea>
+		<input type='submit' class='btn btn-small btn-primary btn-block' value='Submit'>
+	</form>
+</template>
+
+<template name="uploadContent">
+	<form>
+		<label>Title</label>
+		<input type='text' class='form-control input-small' name='title' value={{title}} disabled>
+		<label>Content</label>
+		<textarea type='text' rows='15' class='form-control' name='content' required>{{content}}</textarea>
+		<input type='submit' class='btn btn-small btn-primary btn-block' value='Change'>
+	</form>
+</template>
+
+<template name="uploadDdl">
+	<form>
+		<label>Deadline</label>
+		<input type='datetime-local' class='ddl-change form-control' name='deadline' required>
+		<input type='submit' class='btn btn-small btn-primary' value='Change'>
+	</form>
+</template>
+
+<template name="uploadedAssignments">
+	{{#if isTeacher}}
+		{{#each submittalsx}}
+		<div class='show-block'>
+			<a class='card'>
+				<p class='title label label-success'>{{username}}</p><br />
+				<label> answered </label>			
+				<p class='title label label-info'>{{title}}</p>
+				<label> submitted at</label>
+				<p class='label label-warning'>{{submittedAtx}}</p><br />
+				<label> grade</label>
+				<p class='label label-primary'>{{grade}}</p>
+			</a>
+			<div class='hide assignment submission{{_id}}'>
+				<form>
+					<label>Title</label>
+					<input type='text' class='form-control input-small' name='title' value={{title}} disabled>
+					<label>Content</label>
+					<textarea type='text' rows='15' class='form-control' name='content' required disabled>{{answer}}</textarea>
+					<input type='text' class='ddl-change form-control' name='grade' required>
+					<input type='submit' class='btn btn-small btn-primary' value='grade'>
+				</form>
+			</div>
+		</div>
+		{{/each}}
+	{{else}}
+		{{#each submittals}}
+		<div class='show-block'>
+			<a class='card'>			
+				<p class='title label label-success'>{{username}}</p><br />
+				<label> answered </label>			
+				<p class='title label label-info'>{{title}}</p>
+				<label> submitted at</label>
+				<p class='label label-warning'>{{submittedAtx}}</p><br />
+				<label> grade</label>
+				<p class='label label-primary'>{{grade}}</p>
+			</a>
+			<div class='hide assignment submission{{_id}}'>
+				<form>
+					<label>Title</label>
+					<input type='text' class='form-control input-small' name='title' value={{title}} disabled>
+					<label>Content</label>
+					<textarea type='text' rows='15' class='form-control' name='content' required disabled>{{answer}}</textarea>
+				</form>
+			</div>
+		</div>
+		{{/each}}
+	{{/if}}
+</template>

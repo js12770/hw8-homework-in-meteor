@@ -1,0 +1,72 @@
+/* CSS declarations go here */
+body {
+	font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+label {
+	margin-top: 10px;
+}
+textarea {
+	resize: none;
+}
+.part-t,.part-1,.part-2{
+	overflow: auto;
+}
+.part-t {
+	background-color: #18D95D;
+	min-height: 780px;
+}
+.part-t-1 {
+	width: 1000px;
+	margin: auto;
+	padding-bottom: 20px;
+}
+.part-1 {
+	background-color: #45C5C7;
+	min-height: 780px;
+}
+.part-2, body {
+	background-color: #B867CC;
+	min-height: 780px;
+}
+.show-block {
+	max-width: 1500px;
+}
+.card {
+	margin: 25px;
+	width: 240px;
+	border-radius: 2%;
+	border: solid 2px lightgreen;
+	padding: 10px;
+	float: left;
+	background-color: white;
+	transition: border 0.5s;
+	-webkit-transition: border 0.5s;	/* Safari 和 Chrome */
+}
+.card:hover {
+	cursor: pointer;
+	text-decoration:none;
+	border: solid 2px #CC1059;
+}
+.center {
+	padding-top: 40px;
+	margin: auto;
+	width: 90%;
+	text-align: center;
+	color: white;
+}
+.assignment {
+	border-radius: 1%;
+	min-width: 1200px;
+	padding: 10px;
+	margin: 25px;
+	float: left;
+	background-color: white;
+}
+.hide {
+	display: none;
+}
+.ddl-change {
+	max-width: 300px;
+	display: inline;
+	margin: 30px;
+}
