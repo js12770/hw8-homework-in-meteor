@@ -1,0 +1,20 @@
+template(name='commandhw')
+  .container
+    .row
+      .col-md-3
+        +nav_bar_left
+      .col-md-8
+        .publish-hw
+          .form-horizontal
+            .form-group
+              label.col-sm-2.control-label 作业名
+              .col-sm-8
+                p.form-control #{hwname}
+            .form-group
+              label.col-sm-2.control-label 截止日期
+              .col-sm-3
+                p.form-control #{date} : #{time}
+            .form-group
+              label.col-sm-2.control-label 作业要求
+              .col-sm-8
+                p.form-control #{command}

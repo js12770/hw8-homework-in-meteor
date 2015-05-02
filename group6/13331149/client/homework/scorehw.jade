@@ -1,0 +1,29 @@
+template(name='scorehw')
+  .container
+    .row
+      .col-md-3
+        +nav_bar_left
+      .col-md-8
+        .showhw
+              .page-header
+                h3
+                  | 软件过程改进
+              table.table.table-bordered.table-striped.table-condensed
+                thead
+                  tr
+                    th.col-md-3 作业名
+                    th.col-md-4 要求
+                    th.col-md-3 截止日期
+                    th.col-md-2 分数
+                tbody
+                  each homeworks
+                    if isAfterDeadline date time
+                      tr
+                        td #{hwname}
+                        td #{command}
+                        td #{date}
+                        if isTeacher
+                          td
+                            a.btn.btn-xs.btn-primary(role="button" href="/homework/correcthw/#{hwname}") 评分
+                        else
+                          td {{getScore submits}}

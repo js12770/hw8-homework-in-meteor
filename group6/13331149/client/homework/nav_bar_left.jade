@@ -1,0 +1,15 @@
+template(name='nav_bar_left')
+	.nav-bar-left
+		ul(class='nav nav-list')
+			li(class='nav-header') Homework
+			if isTeacher
+				li
+					a(href="/homework/publish") 发布作业
+			li
+				a(href="/homework/showhw") 所有作业(未截止)
+			if isTeacher
+				li
+					a(href="/homework/scorehw") 批改作业(已截止)
+			else
+				li
+					a(href="/homework/scorehw") 查看分数(已截止)

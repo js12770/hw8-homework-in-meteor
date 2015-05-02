@@ -1,0 +1,2 @@
+SelectionMode="Multiple" 多选，不能写在CS里
+ListBox1.SelectionMode=System.Web.UI.WebControls.ListSelectionMode.Multiple;
