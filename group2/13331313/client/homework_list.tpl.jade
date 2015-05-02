@@ -1,0 +1,11 @@
+if (isState 'homePage')
+	div.homework-list
+		h1 Homework
+		if isInRole 'admin'
+			a(href='/', class='publishHw') pulish a Hw?
+		each homeworks
+			li.list-group-item
+				span.deadline_ deadline: #{deadline}
+				a(href="/", class='hwDetails', id='#{this.id}')
+					h2.list-group-item-heading #{title}
+				p.list-group-item-text #{require}
