@@ -1,0 +1,9 @@
+/* CSS declarations go here */
+.main {
+  margin: auto;
+  width: 60%;
+}
+
+.hide {
+  display: none;
+}

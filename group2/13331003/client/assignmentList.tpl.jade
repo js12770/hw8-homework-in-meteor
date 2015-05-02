@@ -1,0 +1,30 @@
+#assignmentList
+
+  p assignmentList
+
+  button.publish-button publish
+
+  select.assignmentList(name='assignment')
+    option(value='')
+    each assignmentList
+      option(value='#{_id}') #{title}
+
+  if selectedAssignment
+    if isAfterDeadline
+      button.modify-button(disabled) modify
+      button.submit-button(disabled) submit
+    else
+      button.modify-button modify
+      button.submit-button submit
+
+  if selectedAssignment
+    ul
+      li title: #{selectedAssignment.title}
+      li deadline: #{selectedAssignment.deadline}
+      li content: #{selectedAssignment.content}
+
+  else
+    ul
+      li title:
+      li deadline:
+      li content:
