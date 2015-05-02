@@ -1,0 +1,17 @@
+div
+	a(href='/signout' class='signout') Sign Out
+	h3 Identity:
+	ul
+		li username: #{user.username}
+		li email: #{user.email}
+		li first name: #{user.firstName}
+		li last name: #{user.lastName}
+		li identity: #{user.identity}
+	if user
+		if identity 'teacher' user
+			+teacher
+		else if identity 'student' user
+			+student
+		else
+			h1 You account is invalid!
+			p You give a correct username and password, but database return a invalid type user account

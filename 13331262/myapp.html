@@ -1,0 +1,42 @@
+<head>
+  <title>myHomework</title>
+</head>
+
+<body>
+  <h1>Welcome to MyHomework!</h1>
+  <h4>Now you should click button below to login </h4>
+  <div class='loginField'>
+    {{> loginButtons}}
+  </div>
+  {{> identity}}
+  {{student}}
+  {{teacher}}
+  
+</body>
+
+<template name="identity">
+  {{#if firstLogin}}
+    <div class="identity">
+  	  <input name="identity" type="radio" value="student" />Student
+  	  <input name="identity" type="radio" value="teacher" />Teacher
+    </div>
+  {{/if}}
+</template>
+
+<template name="ddl">
+  {{#if isLogin}}
+    <div>
+  	  <form class="ddl">
+  		<input type="text" name="text" placeholder="Type to add new tasks"/>
+  	  </form>
+    </div>
+  {{/if}}
+</template>
+
+<template name="student">
+	
+</template>
+
+<template name="teacher">
+	
+</template>

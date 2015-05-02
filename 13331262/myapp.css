@@ -1,0 +1,13 @@
+/* CSS declarations go here */
+body {
+	position: absolute;
+	right: 38%;
+}
+.loginField {
+	position: relative;
+	left:70px;
+}
+h4 {
+	position: relative;
+	left: 30px;
+}
