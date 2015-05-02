@@ -1,0 +1,55 @@
+.container
+  .page-header
+    h1 Welcome #{user.username}
+    if (userIsTeacher)
+      h3 Check all students' submissions
+    else if userIsStudent
+      h3 Check all your submissions
+  .row
+    .container
+      if userIsTeacher
+        table.table.table-striped
+          thead
+            th Student
+            th Date
+            th Commitment
+            th Grades
+          tbody
+            each homeworks
+              tr
+                td #{this.student}
+                td #{getUploadDate}
+                td #{this.commitment}
+                td
+                  if this.grades
+                    span #{this.grades}
+                  span.left-holder
+                  a(href='/grade/#{this.homeworkName}/#{this.student}')
+                    span.glyphicon.glyphicon-pencil(aria-hidden="true")
+      else if userIsStudent
+        table.table.table-striped
+          thead
+            th Homework
+            th Student
+            th Complement
+            th File
+            th Date
+            th Grades
+          tbody
+            each homeworks
+              tr
+                td #{this.homeworkName}
+                td #{this.student}
+                td #{this.commitment}
+                //-td: a(href='/download/#{this.homeworkName}/#{this.student}')
+                  span.glyphicon.glyphicon-download-alt
+                td: a(href='/files/#{this.homeworkName}_#{this.student}.zip')
+                  span.glyphicon.glyphicon-download-alt
+                td #{getUploadDate}
+                td
+                  if this.grades
+                    span #{this.grades}
+      #message
+          if message
+              h1.text-center.error-message #{message}
+
