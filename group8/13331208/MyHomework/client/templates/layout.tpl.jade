@@ -9,7 +9,7 @@
       a.navbar-brand(href='#') Homework Management System
     nav.collapse.navbar-collapse.bs-navbar-collapse
       ul.nav.navbar-nav
-        li.active: a(href="{{pathFor 'welcome'}}") Home
+        li.active: a(href="{{pathFor 'home'}}") Home
       ul.nav.navbar-nav.navbar-right
         +loginButtons(align='right')
 
@@ -17,4 +17,3 @@
 
 #main.row-fluid
   +yield
-

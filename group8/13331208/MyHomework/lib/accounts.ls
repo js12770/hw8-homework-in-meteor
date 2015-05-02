@@ -2,7 +2,7 @@ if Meteor.is-client
   Accounts.ui.config {
     requestPermissions: {},
     extraSignupFields: [{
-      fieldName: 'first-name',
+      fieldName: 'firstName',
       fieldLabel: 'First name',
       inputType: 'text',
       visible: true,
@@ -13,7 +13,7 @@ if Meteor.is-client
         else
           true
     }, {
-      fieldName: 'last-name',
+      fieldName: 'lastName',
       fieldLabel: 'Last name',
       inputType: 'text',
       visible: true,
@@ -23,18 +23,8 @@ if Meteor.is-client
           false
         else
           true
-    }, {
-      fieldName: 'username',
-      fieldLabel: 'User name',
-      inputType: 'text',
-      visible: true,
-      validate: (value, errorFunction)-> 
-        if !value
-          errorFunction "Please write your username"
-          false
-        else
-          true
-    }]
+    }],
+    passwordSignupFields: 'USERNAME_AND_EMAIL'
   }
 
   Accounts.on-login -> Router.go 'home'
