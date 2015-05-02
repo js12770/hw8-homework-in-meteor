@@ -1,0 +1,53 @@
+.jumbotron
+  .container
+    h1 Welcome #{user.username}
+    if userIsTeacher
+      p Here are all homeworks you created, you can :
+      .btn-group(role='button', aria-label="...")
+        .btn-group(role='button')
+          button.btn.btn-primary.btn-lg.dropdown-toggle(type="button", data-toggle="dropdown", aria-expanded="false") Update Homework Settings
+            span.left-holder
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li: a Update Homework Deadline
+            li.divider
+            li: a Update Homework Requirement
+        button.btn.btn-primary.btn-lg(type="button") Check all students' submissions
+    else if userIsStudent
+      p Here are all homeworks for you, you can :
+      .btn-group(role='button')
+        button.btn.btn-primary.btn-lg(type="button") Submit your Homework
+
+
+.container
+  .panel-group#accordion
+    each homeworks
+      .panel.panel-default
+        .panel-heading
+          h4.panel-title
+            a(data-toggle="collapse" data-parent="#accordion" href="#collapse#{this.homeworkName}") #{this.homeworkName}
+              span.badge.pull-right Submissions: #{this.uploaded}
+        .panel-collapse.collapse.in(id='collapse#{this.homeworkName}')
+          .panel-body
+            p Start Date : #{getStartDate}
+            p Due Date   : #{getDeadline}
+            p Requirement:
+            p: pre #{this.requirement}
+        .panel-footer
+          .btn-white.btn-group(role='button', aria-label="...")
+            if userIsTeacher
+              a.btn.btn-primary.btn-lg(href='/homework/update/#{this.homeworkName}') Update
+                span.left-holder
+                span.glyphicon.glyphicon-cog(aria-hidden="true")
+            else if userIsStudent
+              a.btn.btn-primary.btn-lg(href='/homework/submit/#{this.homeworkName}') Submit
+                span.left-holder
+                span.glyphicon.glyphicon-open(aria-hidden="true")
+            if userIsTeacher
+              a.btn.btn-primary.btn-lg(href='/check/#{this.homeworkName}') Check
+                span.left-holder
+                span.glyphicon.glyphicon-pencil(aria-hidden="true")
+
+  #message.text-center.alert-danger
+      if message
+          h1.text-center.error-message #{message}
