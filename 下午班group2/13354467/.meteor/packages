@@ -10,10 +10,10 @@ mquandalle:jade
 vasaka:livescript-compiler
 fourseven:scss
 wolves:bourbon
-useraccounts:semantic-ui
 alanning:roles
 autopublish
 insecure
 accounts-password
 nooitaf:semantic-ui-less
 accounts-ui
+iron:router

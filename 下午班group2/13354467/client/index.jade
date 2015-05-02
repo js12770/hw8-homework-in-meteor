@@ -7,11 +7,8 @@ head
 
 body
   h3.center SE-386 Software Process Improvement in Modern Web Application Design and Development
-  //- button#test 更改状态
   .main
     +loginButtons(align='right')
-    if isInRole 'admin'
-      +assign
-      +homework_list
-    else
-      +myhomework
+    +assign
+    +homework_list
+    +myhomework

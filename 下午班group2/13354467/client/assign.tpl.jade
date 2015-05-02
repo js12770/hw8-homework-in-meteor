@@ -1,15 +1,15 @@
 hr
-if isInRole 'admin'
+if isTeacher
 	form
 		h3 布置作业
 		.ui.labeled.input
-			input.form-control(type='text' name='title' placeholder='作业标题' data-parsley-minlength='1' data-parsley-trigger='keyup' required)
+			input.form-control(type='text',name='title',placeholder='作业标题',required)
 
 		.ui.labeled.input
-			input.form-control(type='text' name='ddl' placeholder='截止日期' data-parsley-minlength='2' data-parsley-trigger='keyup' required)
+			input.form-control(type='datetime-local' name='ddl' required)
 		br
 		br
-		textarea.form-control(rows='3' cols='20' name='require' placeholder='作业要求' data-parsley-minlength='2' data-parsley-trigger='keyup' required)
+		textarea.form-control(rows='3' cols='20' name='require' placeholder='作业要求' required)
 
 		.ui.button.clear 清除
-		.ui.button.positive.submit 发布
+		input.ui.button.positive.submit(type='submit' value='发布')

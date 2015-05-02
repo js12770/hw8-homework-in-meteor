@@ -1,51 +1,52 @@
-hr
-#group-list
-  div
-    h3 已经布置作业
-    table.table
-      thead
-        tr
-          th 作业标题
-          th 作业要求
-          th 截止时间
-          th 操作
-      tbody
-        each homeworks1
-          tr
-            td(width='150') #{title}
-            td(style='word-break:break-all',width='600') #{require}
-            td(width='150') #{ddl}
-            td(width='100') 
-              .ui.button.negative.showhandin 提交/修改
-          tr(style="display:none" )
-            td 我的提交
-            td.answer(colspan='3' style='word-break:break-all') 你还未提交
-          tr(style="display:none" )
-            td(colspan='4' style='word-break:break-all') 
-              form(data-parsley-validate)
-                textarea.form-control(rows='2' name='answer' placeholder='作业' data-parsley-minlength='2' data-parsley-trigger='keyup' required)
-                .ui.button.positive.handin 提交作业
-
+if isStudent
   hr
-  div
-    h3 已经截止作业
-    table.table
-      thead
-        tr
-          th 作业标题
-          th 作业要求
-          th 截止时间
-          th 操作
-      tbody
-        each homeworks2
+  #group-list
+    div
+      h3 已经布置作业
+      table.table
+        thead
           tr
-            td(width='150') #{title}
-            td(style='word-break:break-all',width='600') #{require}
-            td(width='150') #{ddl}
-            td(width='100')
-              .ui.button.negative.detail 查看
-          tr(style="display:none" )
-            td 我的提交：
-            td.answer 你错过了本次提交
-            td 分数：
-            td.score -
+            th 作业标题
+            th 作业要求
+            th 截止时间
+            th 操作
+        tbody
+          each homeworks1
+            tr
+              td(width='150') #{title}
+              td(style='word-break:break-all',width='600') #{require}
+              td(width='150') #{ddl}
+              td(width='100') 
+                .ui.button.negative.showhandin 提交/修改
+            tr(style="display:none" )
+              td 我的提交
+              td.answer(colspan='3' style='word-break:break-all') 你还未提交
+            tr(style="display:none" )
+              td(colspan='4' style='word-break:break-all') 
+                form(data-parsley-validate)
+                  textarea.form-control(rows='2' name='answer' placeholder='作业' data-parsley-minlength='2' data-parsley-trigger='keyup' required)
+                  .ui.button.positive.handin 提交作业
+
+    hr
+    div
+      h3 已经截止作业
+      table.table
+        thead
+          tr
+            th 作业标题
+            th 作业要求
+            th 截止时间
+            th 操作
+        tbody
+          each homeworks2
+            tr
+              td(width='150') #{title}
+              td(style='word-break:break-all',width='600') #{require}
+              td(width='150') #{ddl}
+              td(width='100')
+                .ui.button.negative.detail 查看
+            tr(style="display:none" )
+              td 我的提交：
+              td.answer 你错过了本次提交
+              td 分数：
+              td.score -
