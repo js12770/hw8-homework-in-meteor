@@ -1,0 +1,42 @@
+nav.navbar.navbar-default(role='navigation')
+  .navbar-header
+    //- button.navbar-togglel.collapsed(type='button' data-toggle='collapse' data-target='#navigation')
+    //-   span.sr-only Toggle navigation
+    //-   span.icon-bar
+    //-   span.icon-bar
+    //-   span.icon-bar
+    a.navbar-brand(href='/') MyHomework
+  .collapse.navbar-collapse
+    ul.nav.navbar-nav
+      if currentUser
+        li
+          a.a-all(href="/assignments")
+            span.glyphicon.glyphicon-list(aria-hidden='true')
+            | 所有作业
+        if isTeacher
+          li
+            a.a-post(href='/assign')
+              span.glyphicon.glyphicon-plus(aria-hidden='true')
+              | 发布作业
+      else
+        li
+          a.a-info 基于meteor的作业发布与提交网站
+    ul.nav.navbar-nav.navbar-right
+      if currentUser
+        li
+          a.a-user
+            span.glyphicon.glyphicon-user(aria-hidden='true')
+            | #{user.profile.name}
+        li
+          a.a-signout(href='/signout')
+            span.glyphicon.glyphicon-plane(aria-hidden='true')
+            | Signout
+      else
+        li
+          a.a-signin(href='/signin')
+            span.glyphicon.glyphicon-user(aria-hidden='true')
+            | Signin
+        li
+          a.a-signup(href='/signup')
+            span.glyphicon.glyphicon-log-in(aria-hidden='true')
+            | Signup

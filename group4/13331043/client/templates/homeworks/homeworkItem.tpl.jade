@@ -1,0 +1,15 @@
+ul.list-group-item.main
+  li 学生：#{this.authorName}
+  li 提交时间：#{this.time}
+  li 作业：#{this.content}
+  br
+  li
+    if this.grade
+      | 分数: #{this.grade}
+    else
+      form.form-inline
+        .form-group
+          label(for='#{this._id}') 分数
+          input.form-control(type='number' name='grade' id='#{this._id}' placeholder='分数')
+        .form-group
+            input.btn.btn-primary(type='submit' value='提交')
