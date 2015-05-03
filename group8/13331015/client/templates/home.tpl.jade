@@ -1,0 +1,12 @@
+#homefull.jumbotron
+  .top-holder
+  .container.my
+    h1 Hello #{user.username}
+    h3 Choose your requirements
+    a.btn-lg.grey(href='/info', role="button") Information
+    a.btn-lg.grey(href='/allhomeworks', role="button") Homeworks
+
+
+  #message.text-center.alert-danger
+      if message
+          h1.text-center.error-message #{message}
