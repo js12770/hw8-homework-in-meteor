@@ -1,0 +1,55 @@
+tr.success
+    td #{title}
+    td 
+        button.btn.btn-primary(data-toggle="modal", data-target='##{_id}') View
+    td #{deadline}
+    td
+        if isoverdue deadline
+            button.btn.btn-primary.margin-right.grade-btn(issue-id="#{_id}") Grade
+        else
+            button.btn.btn-primary.margin-right(data-toggle="tooltip" data-placement="top", title="Not the time to grade!") Grade
+        button.btn.btn-success.margin-right(data-toggle="modal", data-target='#edit#{_id}') Edit
+        button.btn.btn-danger(data-toggle="modal", data-target='#delete#{_id}') Delete
+    div.modal.fade(id='#{_id}', tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h3.text-primary.text-center #{title}
+                .modal-body
+                    pre #{content}
+                .modal-footer
+                    button.btn.btn-default(data-dismiss="modal") Close
+    div.modal.fade(id='edit#{_id}' tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+        .modal-dialog.modal-lg
+            .modal-content
+                .modal-header
+                    h2.text-center.text-primary Edit details of homework
+                form.edit-form(method='POST')
+                    .modal-body.issue.center-block
+                        div.form-group
+                            label Title
+                            input.hide(type='text', name='id', value='#{_id}')
+                            input(value='#{title}', type='text', name='title', class='form-control', placeholder='Title',required)
+                        div.form-group
+                            label Deadline
+                            input(value='#{deadline}', todayBtn="true", required, placeholder="Click to choose..." name="deadline", autoclose="true", class='form-control', type="text" size="10" class="datetimepicker")
+                        div.form-group
+                            label Content
+                            textarea(rows="10" name='content', class='form-control', placeholder="The details about your homework...",required, autofocus) #{content}
+                    .modal-footer
+                        .text-center
+                            button.btn.btn-success.btn-margin(type="submit") Modify
+                            button.btn.btn-danger.btn-margin(data-dismiss="modal") Cancel
+
+    div.modal.fade(id='delete#{_id}', tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h3.text-danger.text-center Delete Confirm!
+                .modal-body 
+                    h4.text-center Are you sure to delete homework #{title} ?
+                .modal-footer
+                    form.delete-form(method='POST')
+                        input.hide(name='id', value='#{_id}')
+                        button.btn.btn-danger(type="submit") Delete
+                        button.btn.btn-default(data-dismiss="modal") Cancel

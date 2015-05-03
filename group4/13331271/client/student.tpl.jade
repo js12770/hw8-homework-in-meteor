@@ -1,0 +1,27 @@
+div.container
+    div.row
+        div.col-xs-10.col-sm-10.col-md-10.col-md-offset-1
+            h2.text-primary.text-center Welcome back, #{user.lastName}#{user.firstName}! 
+            br
+            div.menu-wall
+                h3 
+                    span.label.label-primary Role: Student
+                h3.text-primary What can I do for you?
+
+                hr
+                h4 Here's your homework, you can submit your homework if you have finished:
+                p (Homework can be submitted more than one time if it is not overdue!)
+                br
+                table.table.table-hover.all-homework.text-center
+                    tr
+                        th Teacher
+                        th Title
+                        th Content
+                        th Deadline
+                        th Operation
+                        th Latest Submission
+                        th Score
+                    each homeworks
+                        +student_item
+                        
+            a(href="#signout" class='signout-link text-center new-account') Sign Out

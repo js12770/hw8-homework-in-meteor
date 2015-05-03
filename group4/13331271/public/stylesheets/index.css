@@ -1,0 +1,49 @@
+.menu-wall {    
+    margin-top: 20px;
+    padding: 10px 40px 30px 40px;
+    background-color: #f7f7f7;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+
+}
+
+.all-homework { 
+    background-color: white;
+}
+
+th { text-align: center; font-size: 18px;}
+td {font-size: 16px;}
+.table-hover tr {height: 50px;border-top: 1px solid gainsboro;}
+
+.issue {    
+    width: 80%;
+}
+
+.btn-margin {width: 100px; margin: 0 20px;}
+
+.score-input {  
+    width: 100px;
+    float: left;
+}
+
+.role-radio { width: 100%;}
+.role-radio label {width:  50%;}
+
+.margin-right {   
+    margin-right: 10px;
+}
+
+.no-float {
+    float: none !important;
+}
+
+.datetimepicker {
+    padding: 6px 12px;
+}
+
+pre {
+    background-color: #E7F1FA;
+    text-align: left;
+    font-size: 16px;
+}
