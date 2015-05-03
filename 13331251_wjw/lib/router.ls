@@ -2,17 +2,22 @@ Router.configure {
     layoutTemplate: 'main',
     loadingTemplate: 'loading',
     waitOn: ->
-        Meteor.subscribe 'Homeworks'
-        return Meteor.subscribe 'Contents'
+        Meteor.subscribe 'Homework'
+        Meteor.subscribe 'Content'
 }
 
 Router.route '/', {name: 'homeworkList'}
 
 Router.route '/register', {name: 'register'}
 
-Router.route '/homework/:id', {name: 'homework-page', data: -> {homework: Homework.find-one {_id: this.params.id}, contents: Content.find {homework-id: this.params.id}}}
+Router.route '/homework/:id', ->
+    Session.set 'homeworkId', this.params.id
+    console.log(Session.get 'homeworkId')
+    this.render 'homework-page'
 
-Router.route '/content/:id', {name: 'content-page', content: -> contents.find-one this.params.id}
+Router.route '/content/:id', ->
+    Session.set 'contentId', this.params.id
+    this.render 'content-page'
 
 require-login = !->
     console.log 'hehe'
@@ -23,4 +28,3 @@ require-login = !->
         this.next!
 
 Router.on-before-action require-login, {only: 'homeworkList', 'content-page', 'homework-page'}
-
