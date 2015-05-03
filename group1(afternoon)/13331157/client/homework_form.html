@@ -1,0 +1,24 @@
+<template name="homework_form">
+  <form class="ui form" method="post">
+    <div class="field">
+      <label>标题</label>
+      <input type="text" name="title" required>
+    </div>
+    <div class="field">
+      <label>内容</label>
+      <textarea type="text" name="description" required></textarea>
+    </div>
+    <div class="two fields">
+      <div class="field">
+        <lable>开始日期</lable>
+        <input id="datetimepicker1" text="text" name="start" data-date-format='dd/mm/yyyy hh:ii'>
+      </div>
+      <div class="field">
+        <lable>截止日期</lable>
+        <input id="datetimepicker2" text="text" name="end" data-date-format='dd/mm/yyyy hh:ii'>
+      </div>
+    </div>
+    <button id="save" type="submit" class="ui button positive">Save</button>
+    <button id="cancel" class="ui button positive">Cancel</button>
+  </form>
+</template>

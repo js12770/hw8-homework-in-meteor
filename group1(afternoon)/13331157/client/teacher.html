@@ -1,0 +1,11 @@
+<template name="teacher">
+  <div>
+    <button id="create" class="ui button purple create" >Create New Homework</button>
+    <div id="homework_form">
+      {{> homework_form}}
+    </div>
+    {{#each homeworks}}
+      {{> homework}}
+    {{/each}}
+  </div>
+</template>
