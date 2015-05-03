@@ -1,0 +1,56 @@
+div.container.submitAssignmentList
+    div.row
+        div.signup-wall
+            if isteacher
+                h1.text-center 所有作业
+                p.text-center 白色：还未截止的作业
+                p.text-center 蓝色：已经截止，可以批改
+                p.text-center 绿色：已经批改
+            else
+                h1.text-center 我的作业
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th 作业
+                        if isteacher
+                            th 提交者
+                        th 分数
+                        th 操作
+                tbody
+                    if isteacher
+                        each assignments 
+                            if notgrade
+                                if overdl
+                                  tr.info
+                                    td  #{title}
+                                    td
+                                        i.icon-user #{username}
+                                    td #{status}
+                                    td
+                                        button(class="btn btn-info view" id="#{_id}") 批改
+                                else
+                                  tr
+                                    td  #{title}
+                                    td
+                                        i.icon-user #{username}
+                                    td #{status}
+                                    td
+                                        button(class="btn btn-info view" id="#{_id}") 查看
+
+                            else
+                              tr.success
+                                td  #{title}
+                                td
+                                    i.icon-user #{username}
+                                td 
+                                    i.icon-check #{status} 分
+                                td
+                                    button(class="btn btn-info view" id="#{_id}") 查看
+                    else
+                        each assignments
+                            tr
+                              td #{title}
+                              td
+                                  i.icon-check #{status}
+                              td
+                                  button(class="btn btn-info view" id="#{_id}") 查看
