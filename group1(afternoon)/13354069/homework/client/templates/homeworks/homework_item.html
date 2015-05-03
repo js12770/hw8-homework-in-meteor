@@ -1,0 +1,19 @@
+<template name="homeworkItem">
+	<div class="panel panel-info">
+		<div class="panel-heading">
+			<h3 class="panel-title">
+				<b>Homework: {{name}}</b> 
+				&nbsp;Published by: {{teacher}}
+			</h3>
+		</div>
+		<br>
+		<div class="panel-body">
+			{{description}}
+		</div>
+		<hr>
+		<p>
+			&nbsp; Start at: {{start}} Deadline: {{ddl}} &nbsp;<a class="btn btn-default btn-xs" style="{{display}}" href="{{pathFor 'editHomeworkPage'}}"> <span class="glyphicon glyphicon-edit" aria-hidden="true"></span> Edit</a>
+		</p>
+	</div>
+	<br>
+</template>

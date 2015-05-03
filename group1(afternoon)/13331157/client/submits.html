@@ -1,0 +1,22 @@
+<template name="submit2">
+    <div class="ui stacked segment">
+    	<h2 class="ui header">{{_title}}</h2>
+        <p class="ui header">作者：{{_author}}</p>
+    	<div>
+    		{{_description}} <br><br>
+    		<p>提交时间： <code>{{_date}} </code></p>
+    		{{#if _grade}}
+        		<p>分数：<code> {{_grade}} </code></p>
+        	{{else}}
+        	    <p>分数： <code>未评分</code></p>
+        	{{/if}}
+    		<input class="ui" id="{{_id}}" type="text" name="grade">
+            {{#if isPass}}
+                <button class="ui button positive give_grade" value="{{_id}}">评分</button>
+            {{else}}
+                <button class="ui button positive give_grade" value="{{_id}}" disabled>评分</button>
+                <span class="label label-danger">还未到截止日期</span>
+            {{/if}}
+    	</div>
+    </div>
+</template>

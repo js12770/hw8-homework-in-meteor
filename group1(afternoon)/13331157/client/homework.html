@@ -1,0 +1,43 @@
+<template name="homework">
+  <div class="ui piled segment">
+    <h2><b>{{title}}</b></h2>
+    <div>
+      {{description}}<br><br>
+      <p>作者：{{author}}</p>
+      <p>开始日期：<code>{{start}}</code></p>
+      <p>截止日期：<code>{{end}}</code></p>
+      {{#if currentUser}}
+        {{#if isInRole 'teacher'}}
+          {{# if isPass}}
+            <span class="label label-danger">已经过了截止日期</span><br><br>
+            <button class="ui button positive" id="edit" value="{{_id}}" disabled>Edit</button>
+            <a href="/sub/{{_id}}">
+              <button class="ui button positive" id="view">View All Submit</button>
+            </a>
+          {{else}}
+            <button class="ui button positive" id="edit" value="{{_id}}">Edit</button>
+            <a href="/sub/{{_id}}">
+              <button class="ui button positive" id="view_all">View All Submit</button>
+            </a>
+          {{/if}}
+        {{else}}
+          {{#if isPass}}
+            <span class="label label-danger">已经过了截止日期</span><br><br>
+            <button class="ui button positive" id="submit" value="{{_id}}" disabled>Submit</button>
+            <a href="/sub/{{_id}}">
+              <button class="ui button positive" id="view">View My Submit</button>
+            </a>
+          {{else}}
+            <button class="ui button positive" id="submit" value="{{_id}}">Submit</button>
+            <a href="/sub/{{_id}}">
+              <button class="ui button positive" id="view">View My Submit</button>
+            </a>
+            <div id="{{_id}}" class="submit_form">
+              {{> submit_form id}}
+            </div>
+          {{/if}}
+        {{/if}}
+      {{/if}}
+    </div>
+  </div>
+</template>

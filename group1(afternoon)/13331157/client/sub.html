@@ -1,0 +1,14 @@
+<template name="sub">
+    {{#if isInRole 'teacher'}}
+        {{#each subs}}
+            {{> submit2}}
+        {{/each}}    
+    {{else}}
+        {{#each submits}}
+            {{> submit}}
+        {{/each}}
+    {{/if}}
+    <a href="/">
+        <button class="ui button positive" id="back">Back</button>
+    </a>
+</template>
