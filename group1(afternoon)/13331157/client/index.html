@@ -1,0 +1,13 @@
+<template name="index">
+  {{#if currentUser}}
+    {{#if isInRole 'teacher'}}
+      <div class="homework">
+        {{> teacher}}
+      </div>
+    {{else}}
+      <div class="homework">
+        {{> student}}
+      </div>
+    {{/if}}
+  {{/if}}
+</template>

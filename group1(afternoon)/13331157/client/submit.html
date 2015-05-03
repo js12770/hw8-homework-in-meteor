@@ -1,0 +1,14 @@
+<template name="submit">
+    <div class="ui stacked segment">
+        <h2 class="ui header">{{_title}}</h2>
+        <div>
+            {{_description}}<br><br>
+            <p>提交时间： <code>{{_date}} </code></p>
+            {{#if _grade}}
+        		<p>分数：<code> {{_grade}} </code></p>
+        	{{else}}
+        	    <p>分数： <code>未评分</code></p>
+        	{{/if}}
+        </div>
+    </div>
+</template>

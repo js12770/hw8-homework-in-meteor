@@ -1,0 +1,21 @@
+
+#loginButton {
+	position: absolute;
+	left: 400px;
+	font-size: 22px;
+}
+
+#content {
+	position: absolute;
+	top: 50px;
+	left: 400px;
+	width: 800px;
+}
+
+#homework_form {
+	display: none;
+}
+
+.submit_form {
+	display: none;
+}
