@@ -1,0 +1,126 @@
+
+<head>
+  <title>13331202_moguanzhao</title>
+</head>
+
+<body>
+	{{> loginButtons}}
+	{{#if currentUser}}
+		<div class="container">
+			{{> homework_submitting}}
+			<div class="row">
+	  			<div class="publish">
+	  				<h1 class="text-center login-title"> 
+	  					{{> publish_homework}}
+	  				</h1>
+	  			</div>
+	  			<div class="homework-container">
+	  				{{> homework_block}}
+	  			</div>
+	  		</div>
+	  	</div>
+	  	{{> hw_view}}
+	{{else}}
+		<h2>请先登录</h2>
+		<h2>(Tips:老师的账号密码分别为:teacher和123456)</h2>
+  	{{/if}}
+</body>
+<template name="publish_homework">
+	{{#if is_teacher}}
+		<div class="options">
+			<button class="btn btn-lg btn-primary btn-block publish_homework">publish homework</button>
+			<form class='form-publish-homework'>
+				<input name="title" type="text" class='form-control' placeholder='Titile' required>
+				<textarea name="content" class='form-control' placeholder="homework content" rows="10" cols="37" required></textarea>
+				<span>deadline(yyyy-mm-dd/xx:xx)</span>
+				<input id="deadline" name="deadline" type="datetime" required>
+				<button class="btn-primary btn btn-lg" type="submit">提交</button>
+				<button class='cancle btn-primary btn btn-lg'>取消</button>
+			</form>
+		</div>
+	{{/if}}
+</template>
+<template name="homework_block">
+	{{#each homeworks}}
+		<div class="homework-block">
+			<button class='btn btn-lg btn-block homework' id="homework{{id}}">No.{{id}} {{title}}</button>
+			<div class="homework-wall homework{{id}}">
+				<ul class="details">
+					<li> Number: {{id}}</li>
+					<li> content: {{content}}</li>
+					<li> deadline: {{deadline}}</li>
+				</ul>
+				{{#if is_teacher}}
+					<form class="alter_content">
+						<textarea name="content" class='form-control' placeholder="homework content" rows="5" cols="37" required>{{content}}</textarea>
+						<input type="hidden" name="_id" value={{_id}}>
+						<button class="btn-lg content">alter content</button>
+					</form>
+					<form class="alter_deadline">
+						<span>deadline(yyyy-mm-dd/xx:xx)</span>
+						<input id="deadline" name="deadline" type="datetime" required>
+						<input type="hidden" name="_id" value={{_id}}>
+						<button class="btn-lg deadline">alter deadline</button>
+					</form>
+				{{else}}
+					<form class='form-submit-homework'>
+						<textarea name="content" class='form-control' placeholder="homework submit" rows="10" cols="37" required></textarea>
+						<input name="id" type="hidden" value={{id}}>
+						<input name="title" type="hidden" value={{title}}>
+						<button class="btn-block btn-lg homework-submit">submit</button>
+					</form>
+				{{/if}}
+				<button class="btn-block btn-lg homework-cancle" id="cancle{{id}}">cancle</button>
+			</div>
+		</div>
+	{{/each}}
+</template>
+<template name="homework_submitting">
+	{{#if is_student}}
+		{{#if is_empty}}
+			<h1>You have not submitted any homeworks!</h1>
+		{{else}}
+			<div class="submit-homework">
+				{{#each submits}}
+					<div class="submit-info">
+						<h4 class="title">No.{{homework_id}} {{title}}</h4>
+						<span> {{content}}</span>
+						{{#if score}}
+							<span class="score">Score: {{score}}</span>
+						{{else}}
+							<span class="score">Not get the score</span>
+						{{/if}}
+					</div>
+				{{/each}}
+			</div>
+		{{/if}}
+	{{/if}}
+</template>
+<template name="hw_view">
+	{{#if is_teacher}}
+		<div class="homework-container">
+			<div class="homework-list">
+				{{#each submits}}
+					<div class="homework-mark">
+						<h2 class="homework-name">No.{{homework_id}} {{title}} by {{student}}</h2>
+						<p class="homework-content">{{content}}</p>
+						<div class="mark">
+							<form class="hw_mark">
+								<span>评分:</span>
+								<input type="hidden" name="id" value={{homework_id}}>
+								<input type="hidden" name="student" value={{student}}>
+								<input type="number" min="0" max="100" name="score" required>
+								<button>提交</button>
+							</form>
+						</div>
+						{{#if score}}
+							<p class="homework-score">Score:{{score}}</p>
+						{{else}}
+							<p class="not-mark">has not mark</p>
+						{{/if}}
+					</div>
+				{{/each}}
+			</div>
+		</div>
+	{{/if}}
+</template>
