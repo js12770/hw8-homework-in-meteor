@@ -1,0 +1,60 @@
+@import 'colors';
+@import 'utils';
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    line-height: 1.5rem;
+}
+
+a {
+    color: @ff-blue;
+    text-decoration: none;
+}
+
+body {
+    color: @font-gray;
+    text-align: center;
+}
+
+body>* {
+    text-align: left;
+}
+
+.fl {
+    float: left;
+}
+
+.fr {
+    float: right;
+}
+
+.cf:after {
+    display: block;
+    content: '';
+    clear: both;
+}
+
+input {
+    padding: 3px;
+}
+
+.sep {
+    margin: 0 5px;
+}
+
+p {
+    margin-bottom: 0.5rem;
+}
+
+.container {
+    padding: 20px;
+    border: @gray-line;
+    display: inline-block;
+}
+
+label {
+    font-weight: 900;
+    display: block;
+}

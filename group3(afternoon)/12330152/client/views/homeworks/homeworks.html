@@ -1,0 +1,16 @@
+<template name="homeworks">
+  <div id="homework-list">
+    <h1>Homeworks</h1>
+    {{ #if isTeacher }}
+      <a href="createHomework">create a homework</a>
+    {{ /if }}
+    {{ #each homeworks }}
+      <div class="homework-item">
+        <div class="title"><a href="homework" _id="{{ _id }}">{{ title }}</a></div>
+        <div class="details">{{ details }}</div>
+        <div class="pubDate">{{ pubDateStr }}</div>
+        <div class="deadline">{{ deadlineStr }}</div>
+      </div>
+    {{ /each }}
+  </div>
+</template>

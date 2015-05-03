@@ -1,0 +1,69 @@
+
+head
+	title My Homeork
+
+body
+	div.container
+		if currentUser
+			if identity
+				div.row
+
+					div.col-md-4
+						if isTeacher
+							h1.text-center.login-title Hello, Professor {{user}}!
+						else
+							h1.text-center.login-title Welcome {{user}}, hard work is important!
+						h1.text-center.login-title {{> loginButtons}}
+						div.signup-wall
+							div
+								each homeworks
+									{{>homework}}
+					if isTeacher
+						{{> manage}}
+					
+						each submits
+							{{> submit}}
+
+
+								
+			else
+				{{> confirm}}
+
+		else
+			{{> account}}
+
+
+template(name="homework")
+
+	div.homework
+		if isTeacher
+			button(class="delete", style="float:right") &times;
+		p question : {{question}}
+		p from : {{teacher}}
+		p Requirements : {{requirement}}
+		p Deadline : {{deadline}}
+		p My Submit : {{mySubmit}}
+		p My Grade : {{myGrade}}
+
+
+		a(class='btn btn-lg btn-info btn-block' id='submit') Submit
+		if isSubmit
+			form(class='form-signin' id="homework-submit")
+				textarea(class="form-control" rows="5" cols="50" name="answer" placeholder='submit')
+				input(class="form-control"  disabled="disabled" name="question" value="{{question}}")
+				button(class='btn btn-lg btn-primary btn-block', type='submit') Submit
+	hr
+
+template(name="submit")
+		div.col-md-4
+			h1.text-center.login-title Grading
+			div.signup-wall
+				div.homework
+					if isTeacher
+						button(class="delete", style="float:right") &times;
+					p question : {{question}}
+					p name : {{user}}
+					p answer : {{answer}}
+					p Grade : 
+						input(class="form-control" id="grade" name="grade" placeholder="{{grade}}")
+

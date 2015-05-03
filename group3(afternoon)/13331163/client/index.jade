@@ -1,0 +1,22 @@
+head
+  title MyHomework
+  meta(charset='utf-8')
+  link(rel='stylesheet', href='stylesheets/bootstrap.min.css')
+  script(type='application/javascript', src='lib/bootstrap.min.js')
+
+body
+  nav.navbar.navbar-default.navbar-fixed-top(role='navigation')
+    .navbar-header
+      a#home.navbar-brand.btn HomePage
+    div
+      ul.nav.navbar-nav
+        +setup_course
+        +all_courses
+        +my_courses
+        +deal_homework
+        +my_name
+        +my_status
+        li
+          a
+            +loginButtons
+  +my_view

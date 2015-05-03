@@ -1,0 +1,69 @@
+<template name="Student">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">作业详情</h3>
+          </div>
+          <div class="panel-body">
+            <h4>{{assignment.assignmentName}}</h4>
+            <pre>{{assignment.assignmentContent}}</pre>
+            <h4>截止时间：{{assignment.assignmentDeadline}}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-8 col-md-offset-2">
+        {{#if isSubmitted}}
+          <div class="panel panel-primary">
+            <div class="panel-heading">
+              <h3 class="panel-title">我的提交</h3>
+            </div>
+            <div class="panel-body">
+              <pre>{{homework.content}}</pre>
+              {{#unless isntPassed}}
+                {{#if homework.score}}
+                  <h4 class='student-score'>分数</h4>
+                  <p class='student-score'>{{homework.score}}</p>
+                {{else}}
+                  <p>老师还未给你打分</p>
+                {{/if}}
+              {{/unless}}
+            </div>
+          </div>
+        {{else}}
+          {{#if isntPassed}}
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">完成作业</h3>
+              </div>
+              <div class="panel-body">
+                <textarea cols="30" rows="5" class="form-control homework-content" placeholder="请在此处完成作业" required></textarea>
+                <p class='warning hide'>作业不能为空</p>
+              </div>
+            </div>
+          {{/if}}
+        {{/if}}
+      </div>
+      <div class="col-md-4 col-md-offset-4">
+        {{#if isSubmitted}}
+          {{#if isntPassed}}
+            <a href="/homework/update"><button class="btn btn-success btn-block submit">修改作业</button></a>
+          {{else}}
+            <h4 class="text-center">截止时间已过，你不能再修改作业</h4>
+          {{/if}}
+        {{else}}
+          {{#if isntPassed}}
+            <button class="btn btn-success btn-block submit submit-homework">提交作业</button>
+          {{else}}
+            <h4 class="text-center">截止时间已过，你不能提交作业</h4>
+          {{/if}}
+        {{/if}}
+      </div>
+      <div class="col-md-4 col-md-offset-4">
+        <a href="/"><button class="btn btn-info btn-block">返回</button></a>
+      </div>
+    </div>
+    
+  </div>
+</template>

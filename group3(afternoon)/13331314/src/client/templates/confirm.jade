@@ -1,0 +1,13 @@
+
+template(name="confirm")
+	div.row
+		div.col-sm-6.col-md-4.col-md-offset-4
+			h1.text-center.login-title Confirm Your Identity
+			h1.text-center.login-title {{> loginButtons}}
+				div.signup-wall
+					form(class='form-signin identity')
+						select(name='role', class='form-control', placeholder='role',required)
+							option(value='student') student
+							option(value='teacher') teacher
+						button(class='btn btn-lg btn-primary btn-block', type='submit') Confirm
+					{{> loginButtons}}

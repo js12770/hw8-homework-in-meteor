@@ -1,0 +1,8 @@
+li.dropdown    
+  a#dropdownMenu1.btn.dropdown-toggle(type='button', data-toggle='dropdown')
+    | All Courses
+    span.caret
+  ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu1')
+    each unique allcourses
+      li(role='presentation')
+        a.allcourse(role='menuitem', tabindex='-1') #{this.coursename}

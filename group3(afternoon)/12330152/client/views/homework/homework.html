@@ -1,0 +1,87 @@
+<template name="homework">
+  <div id="homework">
+    <h1>Homework</h1>
+    {{ #if isTeacher }}
+      {{ #if homework.outOfDeadline }}
+        <label>title</label>
+        <div class="title">{{ homework.title }}</div>
+        <label>details</label>
+        <div class="details">{{ homework.details }}</div>
+        <label>pub date</label>
+        <div class="pubDate">{{ homework.pubDateStr }}</div>
+        <label>deadline</label>
+        <div class="deadline">out of deadline.</div>
+        <div id="submit-list">
+          <label>submits</label>
+          {{ #each homework.submits }}
+            <div class="submit-item">
+              <label>username</label>
+              <div>{{ username }}</div>
+              <label>solution</label>
+              <textarea disabled="true">{{ solution }}</textarea>
+              <label>score</label>
+              <form class="grade-form" username="{{ username }}">
+                <input type="text" name="score" value="{{ score }}" placeholder="not graded yet." pattern="\d+">
+                <button type="submit">grade</button>
+              </form>
+            </div>
+          {{ /each }}
+        </div>
+      {{ else }}
+        <form id="homework-form">
+          <label>title</label>
+          <input type="text" name="title" value="{{ homework.title }}" required>
+          <label>details</label>
+          <textarea name="details" required>{{ homework.details }}</textarea>
+          <label>pub date</label>
+          <div class="pubDate">{{ homework.pubDateStr }}</div>
+          <label>deadline</label>
+          <input type="datetime-local" name="deadline" value="{{ homework.deadlineVal }}" required>
+          <button type="submit">modify</button>
+        </form>
+        <div id="submit-list">
+          {{ #each homework.submits }}
+            <div class="submit-item">
+              <label>username</label>
+              <div>{{ username }}</div>
+              <label>solution</label>
+              <textarea disabled="true">{{ solution }}</textarea>
+            </div>
+          {{ /each }}
+        </div>
+      {{ /if }}
+    {{ else }}
+      <label>title</label>
+      <div class="title">{{ homework.title }}</div>
+      <label>details</label>
+      <div class="details">{{ homework.details }}</div>
+      <label>pub date</label>
+      <div class="pubDate">{{ homework.pubDateStr }}</div>
+      <label>deadline</label>
+      <div class="deadline">
+        {{ #if homework.outOfDeadline }}
+          out of deadline.
+        {{ else }}
+          {{ homework.deadlineStr}}
+        {{ /if }}
+      </div>
+      <label>your submit</label>
+      {{ #if homework.outOfDeadline }}
+          <textarea name="solution" placeholder="you haven't submit yet." disabled="true" required>{{ #if homework.submit }}{{ homework.submit.solution }}{{ /if }}</textarea>
+      {{ else }}
+        <form id="submit-form">
+          <textarea name="solution" placeholder="you haven't submit yet." required>{{ #if homework.submit }}{{ homework.submit.solution }}{{ /if }}</textarea>
+          <button type="submit">submit</button>
+        </form>
+      {{ /if }}
+      {{ #if homework.submit }}
+        <label>score</label>
+        {{ #if homework.submit.score }}
+          {{ homework.submit.score }}
+        {{ else }}
+          not graded yet.
+        {{ /if }}
+      {{ /if }}
+    {{ /if }}
+  </div>
+</template>

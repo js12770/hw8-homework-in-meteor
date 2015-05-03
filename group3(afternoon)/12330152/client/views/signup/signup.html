@@ -1,0 +1,18 @@
+<template name="signup">
+  <form id="signupForm">
+    <h1>Sign up</h1>
+    <label>username</label>
+    <input type="text" name="username" placeholder="username" autofocus required>
+
+    <label>password</label>
+    <input type="password" name="password" placeholder="password" required>
+
+    <label>role</label>
+    <div><input type="radio" name="role" value="Student" checked>Student</div>
+    <div><input type="radio" name="role" value="Teacher">Teacher</div>
+
+    <button type="submit">signup</button>
+
+    <a href="login">login</a>
+  </form>
+</template>

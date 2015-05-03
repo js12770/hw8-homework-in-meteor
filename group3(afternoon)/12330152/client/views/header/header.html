@@ -1,0 +1,15 @@
+<template name="header">
+  <div id="header" class="cf">
+    {{ #if user }}
+      <span>Hello, {{ user.username }}</span>
+      <span class="sep">|</span>
+      <a href="home">Home</a>
+      <span class="sep">|</span>
+      <a href="homeworks">Homeworks</a>
+      <span class="sep">|</span>
+      <a id="logoutAnchor" href="#">Logout</a>
+    {{ else }}
+      <span class="fl"><a href="login">Login</a></span>
+    {{ /if }}
+  </div>
+</template>

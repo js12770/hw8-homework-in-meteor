@@ -1,0 +1,131 @@
+br
+br
+if currentUser
+  unless hasStatus username
+    .well
+      form(role='form')
+        h1 请选择你的身份:
+        .form-group
+          label.checkbox-inline
+            input#ss(type='radio', name='status', value='student', checked)
+            | 学生
+          label.checkbox-inline
+            input#st(type='radio', name='status', value='teacher')
+            | 教师
+        button#submitStatus.btn.btn-default(type='submit') 提交选择
+
+if setUpCourse
+  .well
+    form#addcourse.unvisiable(style='margin: 5em auto', role='form')
+      .form-group
+        label
+          | 请输入开设的课程名
+          input#courseName.form-control(type='text', name='coursename', placeholder='请输入开设的课程名')
+      button#setUpCourse.btn.btn-default(type='submit') 开设课程
+
+if addHomework
+  .well
+    form(role='form', style='margin: 0em')
+    .form-group
+      label
+        h3 &#x8BFE;&#x7A0B;&#x540D;
+        input.form-control(type='text', name='coursename', placeholder='请输入课程名')
+    .form-group
+      label
+        h3 &#x4F5C;&#x4E1A;&#x540D;
+        input.form-control(type='text', name='requirementname', placeholder='请输入作业名')
+    .form-group
+      label
+        h3 &#x622A;&#x6B62;&#x65F6;&#x95F4;
+        br
+        input(type='datetime-local', style='size: 30', name='deadline')
+    .form-group
+      label
+        h3 &#x4F5C;&#x4E1A;&#x8981;&#x6C42;
+        textarea.form-control(rows='5', cols='100%', name='requirementcontent', placeholder='请输入作业要求')
+    button#addHomeworkButton.btn.btn-default(type='submit') &#x63D0;&#x4EA4;
+
+if submitHomework
+  .well
+    form(role='form', style='margin: 1em auto')
+      .form-group
+        label
+          | &#x8BFE;&#x7A0B;&#x540D;
+          input.form-control(type='text', name='coursename', placeholder='请输入课程名')
+      .form-group
+        label
+          | &#x4F5C;&#x4E1A;&#x540D;
+          input.form-control(type='text', name='requirementname', placeholder='请输入作业名')
+      .form-group
+        label
+          | &#x4F60;&#x7684;&#x4F5C;&#x4E1A;
+          textarea.form-control(rows='5', cols='100%', name='content', placeholder='请输入你的作业')
+      button#submitHomeworkButton.btn.btn-default(type='submit') &#x63D0;&#x4EA4;
+
+if myCourse
+  .well
+    div.panel.panel-primary
+      div.panel-heading
+        h2 所有作业要求
+      div.panel-body
+        each allrequirements
+          div.panel.panel-info
+            div.panel-heading
+              h3 课程名字: #{this.coursename}
+              h3 作业名字: #{this.requirementname}
+              h3 截止时间: #{this.deadline}
+            div.panel-footer
+              if isStudent username
+                h3 作业要求: #{this.requirementcontent}
+              else
+                form(role='form')
+                  div.form-group
+                    h3 作业要求: #{this.requirementcontent}
+                    textarea.form-control(rows='5', name='requirementcontent', placeholder='更新作业要求...')
+                    if exceedTime this.deadline
+                      button#updateRequirementContent.btn.btn-default(type='submit') 更新作业要求
+                    else
+                      button#updateRequirementContent.btn.btn-default(type='submit' disabled) 更新作业要求
+    
+    if isStudent username
+      div.panel.panel-primary
+        div.panel-heading
+          h2 我的作业
+        div.panel-body
+          each myhomeworks
+            div.panel.panel-success
+              div.panel-heading
+                h3 课程名字: #{this.coursename}
+                h3 作业名字: #{this.requirementname}
+                h3 作业要求: #{this.requirementcontent}
+              div.panel-footer
+                h3 用户名: #{this.student}
+                h3 作业内容: #{this.content}
+                h3 作业分数: #{this.score}
+    else
+      div.panel.panel-primary
+        div.panel-heading
+          h2 所有学生的作业
+        div.panel-body
+          each allRequirementsHomeworks
+            div.panel.panel-success
+              div.panel-heading
+                h3 课程名字: #{this.coursename}
+                h3 作业名字: #{this.requirementname}
+                h3 作业要求: #{this.requirementcontent}
+              div.panel-body
+                h3 学生: #{this.student}
+                h3 作业内容: #{this.content}
+              div.panel-footer
+                form(role='form')
+                  div.form-group
+                    label
+                      h3 分数: #{this.score}
+                      input.score.form-control(type='text', name='score', placeholder='评分或重评')
+                    input(type='text', style='display: none', name='coursename', value="#{this.coursename}")
+                    input(type='text', style='display: none', name='requirementname', value="#{this.requirementname}")
+                    input(type='text', style='display: none', name='username', value="#{this.student}")
+                    if exceedTime this.deadline
+                      button#submitScore.btn.btn-default(type='submit') 提交评分
+                    else
+                      button#submitScore.btn.btn-default(type='submit' disabled) 提交评分

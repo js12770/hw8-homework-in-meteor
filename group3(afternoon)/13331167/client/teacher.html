@@ -1,0 +1,57 @@
+<template name="Teacher">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h3 class="panel-title">作业详情</h3>
+          </div>
+          <div class="panel-body">
+            <h4>{{assignment.assignmentName}}</h4>
+            <pre>{{assignment.assignmentContent}}</pre>
+            <h4>截止时间：{{assignment.assignmentDeadline}}</h4>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 col-md-offset-4">
+        <a href="/assignment/update"><button class="btn btn-success btn-block submit">修改作业</button></a>
+      </div>
+      <div class="col-md-8 col-md-offset-2">
+        {{#if isSubmitted}}
+          {{#each homeworks}}
+            <div class="panel panel-primary">
+              <div class="panel-heading">
+                <h3 class="panel-title">已提交的作业</h3>
+              </div>
+              <div class="panel-body">
+                <h4>提交同学</h4>
+                <p>{{studentName}}</p>
+                <h4>提交内容</h4>
+                <pre>{{content}}</pre>
+                {{#unless isntPassed}}
+                  {{#if score}}
+                    <h4 class='student'>分数</h4>
+                    <p>{{score}}</p>
+                  {{else}}
+                    <div class="form-inline">
+                      <input type="hidden" class="homework-id" value="{{_id}}">
+                      <input type="text" class="form-control homework-score" placeholder="请给分">
+                      <button class="btn btn-warning score">打分</button>
+                      <p class='warning hide'>请填写数字</p>
+                    </div>
+                  {{/if}}
+                {{/unless}}
+              </div>
+            </div>
+          {{/each}}
+        {{else}}
+          <h3 class="text-center">还没有人提交作业</h3>
+        {{/if}}
+      </div>
+      <div class="col-md-4 col-md-offset-4">
+        <a href="/"><button class="btn btn-info btn-block">返回</button></a>
+      </div>
+    </div>
+    
+  </div>
+</template>

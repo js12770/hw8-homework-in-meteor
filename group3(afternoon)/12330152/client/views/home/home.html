@@ -1,0 +1,15 @@
+<template name="home">
+  <div id="user-info">
+    {{ #if user }}
+      <p>Hello, {{ user.username }}</p>
+      <p>Welcome to MyHomework!</p>
+      <p>Your role: {{ user.role }}</p>
+      <p>You can <a href="homeworks">view the homeworks</a></p>
+      {{ #if isTeacher }}
+        <p>or <a href="createHomework">create a new homework</a></p>
+      {{ /if }}
+    {{ else }}
+      <p>Please <a href="login">log in</a>.</p>
+    {{ /if }}
+  </div>
+</template>

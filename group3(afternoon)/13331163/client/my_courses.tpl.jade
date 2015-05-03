@@ -1,0 +1,8 @@
+li.dropdown
+  a#dropdownMenu2.btn.dropdown-toggle(type='button', data-toggle='dropdown')
+    | 我的课程
+    span.caret
+  ul.dropdown-menu(role='menu', aria-labelledby='dropdownMenu2')
+    each unique mycourses
+      li(role='presentation')
+        a.mycourse(role='menuitem', tabinex='-1') #{this.coursename}
