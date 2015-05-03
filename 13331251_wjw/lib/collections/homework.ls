@@ -6,14 +6,14 @@ root.Homework.allow {
     insert: (user-id, post)->
         return !! user-id
     update: (userId, post)->
-        ownsDocument userId, post
+        return true
     remove: (uerId, post)->
-        ownsDocument userId, post
+        return true
 }
 
 root.Homework.deny {
     update: (userId, post, field-names)->
-        _.without filed-names, 'title', 'demand', 'deadline' .length > 0
+        _.without field-names, 'title', 'demand', 'deadline' .length > 0
     }
 
 Meteor.methods {

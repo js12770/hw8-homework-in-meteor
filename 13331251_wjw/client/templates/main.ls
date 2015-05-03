@@ -3,3 +3,4 @@ Template.main.events {
         Meteor.logout!
         Router.go '/'
 }
+
