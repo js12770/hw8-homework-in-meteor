@@ -1,0 +1,25 @@
+template(name='modify')
+  .container
+    .row
+      .col-md-3
+        +nav_bar_left
+      .col-md-8
+        .publish-hw
+          form.form-horizontal
+            .form-group
+              label.col-sm-2.control-label 作业名
+              .col-sm-8
+                input.form-control(type="text" name="hwname" value='{{getHwName}}')
+            .form-group
+              label.col-sm-2.control-label 截止日期
+              .col-sm-3
+                input.form-control(type="date" name="date" value='#{getDate}')
+              .col-sm-3
+                input.form-control(type="time" name="time" value='#{getTime}')
+            .form-group
+              label.col-sm-2.control-label 作业要求
+              .col-sm-8
+                textarea.form-control(rows="8" name="command") #{getCommand}
+            .form-group
+              .col-sm-offset-2.col-sm-8
+                button.btn.btn-success(type="submit") 确定修改

@@ -1,0 +1,22 @@
+head
+	title 作业提交系统
+	meta(charset='utf-8')
+body
+	nav(class="navbar navbar-inverse navbar-fixed-top")
+		div.container
+			div.navbar-header
+				a(class="navbar-brand" href="/") Homework提交系统
+			div(class="collapse navbar-collapse")
+				ul(class="nav navbar-nav navbar-left")
+					li
+						if currentUser
+							a(href="/homework") 查看Homework
+				ul(class="nav navbar-nav navbar-right")
+					li
+						if currentUser
+							a(href="/logout")
+								span.fui-exit
+								span Logout
+						else
+							a(href="/login") Login
+	.placeholder50px

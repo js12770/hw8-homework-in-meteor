@@ -1,0 +1,88 @@
+.container
+    .page-header
+        h1 Welcome #{user.username}
+        if optionIsCreate option
+            h3 Create Homework
+        else if optionIsUpdate option
+            h3 Update Homework
+        else if optionIsSubmit option
+            h3 Submit Homework
+    .row
+        .container
+            if optionIsUpdate option
+                .panel.panel-default.hidden
+                    #requirement-box.panel-body #{homework.requirement}
+                form.update.form-horizontal(method='POST')
+                    .form-group.textbox
+                        label.col-sm-3(for='name') Homework Title
+                        .col-sm-3
+                            input(class='form-control', type='text', name='name', value='#{homework.homeworkName}', readonly)
+                    .form-group.textbox
+                        label.col-sm-3(for='requirement') Homework Content
+                        .col-sm-8
+                            if afterDeadline homework
+                                textarea#requirement-textbox(class='form-control', name='requirement', rows='15', readonly)
+                            else
+                                textarea#requirement-textbox(class='form-control', name='requirement', rows='15', required)
+                    .form-group.textbox
+                        label.col-sm-3(for='deadline') Homework Deadline
+                        .col-sm-3
+                            input(class='form-control', type='datetime-local', name='deadline', value='{{parseDeadline homework}}', required)
+                    .form-group
+                        .col-sm-offset-3.col-sm-10
+                            button(class='btn btn-lg btn-primary', type='submit') Update Homework
+                    span.clearfix
+            else if optionIsSubmit option
+                form.submit.form-horizontal(action='/submit/#{homework.homeworkName}/#{user.username}' , enctype="multipart/form-data", method='POST')
+                    .form-group.hidden
+                        label.col-sm-3(for='student') Student
+                        .col-sm-3
+                            input(class='form-control', type='text', name='student', value='#{user.username}', readonly)
+                    .form-group
+                        label.col-sm-3(for='name') Homework Title
+                        .col-sm-3
+                            input(class='form-control', type='text', name='name', value='#{homework.homeworkName}', readonly)
+                    .form-group.textbox
+                        label.col-sm-3(for='commitment') Homework Commitment
+                        .col-sm-8
+                            textarea#requirement-textbox(class='form-control', name='commitment', autofocus, required)
+                    .form-group
+                        label.col-sm-3(for='deadline') Homework Deadline
+                        .col-sm-3
+                            input(class='form-control', type='text', name='deadline', value='Deadline: {{getDeadline homework}}', disabled)
+                    .form-group.textbox
+                        label.col-sm-3(for='name') Homework Content
+                            span.left-holder
+                            span.glyphicon.glyphicon-upload(aria-hidden="true")
+                        .col-sm-3
+                            input#file-upload(class='form-control', type='file', name='upfile', required)
+                    .form-group
+                        .col-sm-offset-3.col-sm-10
+                            if afterDeadline homework
+                                button(class='btn btn-lg btn-primary', type='submit', disabled) Submit Homework
+                                span.left-holder
+                                span.label.label-danger Missed deadline
+                            else
+                                button(class='btn btn-lg btn-primary', type='submit') Submit Homework
+                    span.clearfix
+            else if optionIsCreate option
+                form.create.form-horizontal(method='POST')
+                    .form-group.textbox
+                        label.col-sm-3(for='name') Homework Title
+                        .col-sm-3
+                            input(class='form-control', type='text', name='name', placeholder='Homework Name', required, autofocus)
+                    .form-group.textbox
+                        label.col-sm-3(for='requirement') Homework Content
+                        .col-sm-9
+                            textarea(class='form-control', name='requirement', rows='10', required)
+                    .form-group.textbox
+                        label.col-sm-3(for='deadline') Homework Deadline
+                        .col-sm-3
+                            input(class='form-control', type='datetime-local', name='deadline', required)
+                    .form-group
+                        .col-sm-offset-3.col-sm-10
+                            button(class='btn btn-lg btn-primary', type='submit') Create Homework
+                    span.clearfix
+            #message
+                if message
+                    h1.text-center.error-message #{message}

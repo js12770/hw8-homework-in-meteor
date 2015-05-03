@@ -1,0 +1,53 @@
+.jumbotron
+  .container
+    h1 Welcome #{user.username}
+    if (userIsTeacher)
+      p Please choose your options for the student's homeworks :
+      .btn-group(role='button', aria-label="...")
+        .btn-group(role='button')
+          button.btn.btn-primary.btn-lg.dropdown-toggle(type="button", data-toggle="dropdown", aria-expanded="false") Update Student's Homeworks
+            span.left-holder
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li: a Change Homework Deadline
+            li.divider
+            li: a Change Homework Requirement
+        button.btn.btn-primary.btn-lg(type="button") Check All The Students' Homeworks
+    else if (userIsStudent)
+      p Please read and finish your homeworks:
+      .btn-group(role='button')
+        button.btn.btn-primary.btn-lg(type="button") Submit Your Homeworks
+
+
+.container
+  .panel-group#accordion
+    each homeworks
+      .panel.panel-default
+        .panel-heading
+          h4.panel-title
+            a(data-toggle="collapse" data-parent="#accordion" href="#collapse#{this.homeworkName}") #{this.homeworkName}
+              span.badge.pull-right Submissions: #{this.uploaded}
+        .panel-collapse.collapse.in(id='collapse#{this.homeworkName}')
+          .panel-body
+            p Start Date ---> #{getStartDate}
+            p End Date   ---> #{getDeadline}
+            p Requirement---> 
+            p: pre #{this.requirement}
+        .panel-footer
+          .btn-white.btn-group(role='button', aria-label="...")
+            if (userIsTeacher)
+              p Update Homeworks
+              a.btn.btn-primary.btn-lg(href='/homework/update/#{this.homeworkName}') Update
+                span.left-holder
+                span.glyphicon.glyphicon-cog(aria-hidden="true")
+            else if (userIsStudent)
+              p Submit Homeworks
+              a.btn.btn-primary.btn-lg(href='/homework/submit/#{this.homeworkName}') Submit
+                span.left-holder
+                span.glyphicon.glyphicon-open(aria-hidden="true")
+            if (userIsTeacher)
+              p Check Homeworks
+              a.btn.btn-primary.btn-lg(href='/check/#{this.homeworkName}') Check
+                span.left-holder
+                span.glyphicon.glyphicon-pencil(aria-hidden="true")
+

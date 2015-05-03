@@ -1,0 +1,30 @@
+template(name='showhw')
+  .container
+    .row
+      .col-md-3
+        +nav_bar_left
+      .col-md-8
+        .showhw
+              .page-header
+                h3
+                  | 软件过程改进
+              table.table.table-bordered.table-striped.table-condensed
+                thead
+                  tr
+                    th.col-md-2 作业名
+                    th.col-md-3 截止日期
+                    th.col-md-2 查看要求
+                    th.col-md-2 操作
+                tbody
+                  each homeworks
+                    //- unless isAfterDeadline date time
+                    tr
+                      td #{hwname}
+                      td #{date}
+                      td
+                        a.btn.btn-xs.btn-primary(role="button" href="/homework/showhw/#{hwname}") 查看要求
+                      td
+                        if isTeacher
+                          a.btn.btn-xs.btn-primary(role="button" href="/homework/modify/#{hwname}") 修改内容
+                        else
+                          a.btn.btn-xs.btn-primary(role="button" href="/homework/uploadhw/#{hwname}") 提交

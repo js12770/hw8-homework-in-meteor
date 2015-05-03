@@ -1,0 +1,13 @@
+template(name='uploadhw')
+  .container
+    .row
+      .col-md-3
+        +nav_bar_left
+      .col-md-8
+          form
+            .form-group
+              h4 提交格式: 学号-姓名.zip
+              label (eg: 13331149-linjinjin.zip)
+            .form-group
+              label 选择文件
+              {{> upload_bootstrap callbacks=myUploadCallbacks formData=specificFormData}}

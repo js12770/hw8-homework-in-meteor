@@ -1,0 +1,68 @@
+<head>
+  <title>My Homework Manager1</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>My Homework</h1>
+    </header>
+    <p>
+      {{init}} {{> loginButtons}}
+    </p>
+    {{#if currentUser}}
+    <strong>
+      {{#if isTeacher}} Hello~You are Teacher!
+      <br/>
+      <br/>
+      <div>
+        <form class="new-score">
+          <input type="text" name="text" placeholder="score" />
+        </form>
+        <form class="new-deadline">
+          <input type="text" name="text" placeholder="deadline" />
+        </form>
+        <form class="new-require">
+          <input type="text" name="text" placeholder="requirement" />
+        </form>
+      </div>
+
+      {{else}} Hello~You are student {{/if}}
+    </strong>
+    <strong>
+      <br/><br/>
+      {{#each getNum}} {{>hwReq}} {{/each}}
+    </strong>
+
+    <div>
+      <form action="/" enctype="multipart/form-data" method="post" class="upload">
+        <p>upload your homework</p>
+        <input type="file" name="homework" />
+        <input type="submit" value="Send" />
+      </form>
+    </div>
+    {{else}}
+    <div>Please sign in</div>
+    {{/if}}
+
+    <ul>
+      {{#each tasks}} {{>task}} {{/each}}
+    </ul>
+  </div>
+</body>
+
+<template name="task">
+  <li>
+    <p>
+      <Strong>{{username}}</Strong>----submit:{{createdAt}}
+      <span>
+        <span>------Your score:</span>{{score}}</span>
+    </p>
+  </li>
+</template>
+
+<template name="hwReq">
+  <div>The deadLine is :{{deadLine}}</div>
+  <br/>
+  <div>The requirement of the homework:{{hwR}}</div>
+</template>

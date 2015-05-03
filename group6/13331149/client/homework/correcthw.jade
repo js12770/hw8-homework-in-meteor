@@ -1,0 +1,27 @@
+template(name='correcthw')
+  .container
+    .row
+      .col-md-3
+        +nav_bar_left
+      .col-md-8
+        .showhw
+              .page-header
+                h3
+                  | 软件过程改进
+                form.form-horizontal
+                  table.table.table-bordered.table-striped.table-condensed
+                    thead
+                      tr
+                        th.col-md-3 文件
+                        th.col-md-3 上传者
+                        th.col-md-3 得分
+                    tbody
+                      each uploads.submits
+                        tr
+                          td
+                            a(href="/download/#{path}") #{path}
+                          td #{student}
+                          td
+                            input.form-control.scoreinput(type="text" name="score" value="#{score}")
+                  button.btn.btn-primary(type="submit") 保存    
+        
