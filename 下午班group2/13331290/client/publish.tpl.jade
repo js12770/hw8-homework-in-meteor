@@ -1,0 +1,15 @@
+form.publish-assignment.hidden
+  .form-group
+    label Title
+    input(type='text' name='title' required)
+
+  .form-group
+    label Deadline
+    input(type='datetime-local' name='deadline' required)
+
+  .form-group
+    label Requirement
+    textarea(rows='15' name='requirement' required)
+
+  .form-group
+    input(type='submit' value='Publish')

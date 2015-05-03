@@ -1,0 +1,15 @@
+form.edit-assignment.hidden
+  .form-group
+    label Title
+    input(type='text' name='title' value='#{assignment.title}' readonly required)
+
+  .form-group
+    label Deadline
+    input(type='datetime-local' name='deadline' value='#{assignment.deadline}' required)
+
+  .form-group
+    label Requirement
+    textarea(rows='15' name='requirement' required) #{assignment.requirement}
+
+  .form-group
+    input(type='submit' value='Save')

@@ -1,0 +1,23 @@
+.header
+  div Software Process
+    br
+    span  Improvement
+form.sign-in
+  input(type='text' placeholder='username' name='username')
+  input(type='password' placeholder='password' name='password')
+  input(type='submit' value='Sign In')
+  .to-sign-up Create an account
+
+form.sign-up.hidden
+  input(type='text' placeholder='username' name='username' required autocomplete)
+  input(type='password' placeholder='password' name='password' required)
+  input(type='text' placeholder='ID number' name='id')
+  .radio
+    label.radio-inline
+      input(type='radio' name='status' value='teacher' required)
+      span teacher
+    label.radio-inline
+      input(type='radio' name='status' value='student' checked='checked' required)
+      span student
+  input(type='submit' value='Sign Up')
+  .to-sign-in Back to sign in

@@ -1,0 +1,17 @@
+form
+  table.revise-assignment.hidden
+    thead
+      tr
+        th Name
+        th ID
+        th Link
+        th Score
+    tbody
+      each assignment.submission
+        tr
+          td #{name}
+          td #{studentId}
+          td: a(href='#{filePath}') #{studentId}.zip
+          td.score-column: input.score-input(type='number' min='0' max='100' name='score' value='#{score}')
+      if assignment.submission
+        input(type='submit' value='Save')

@@ -1,0 +1,14 @@
+<template name="answerItem">
+  <li>
+    <h4>
+      <span class="author"><b>{{author}}</b></span>
+      <span class="date">on {{submittedText}}</span>
+    </h4>
+    <p>{{body}}</p>
+    <h4><span><b>Score: </b>{{score}}</span></h4>
+    <form class="main form">
+      <input name="score" type="text" placeholder="The score" value="{{#if isDisabled}}Give score after dl{{/if}}" disabled="{{#if isDisabled}}disabled{{/if}}">
+      <input type="submit" value="Submit" class="btn btn-primary submit" disabled="{{#if isDisabled}}disabled{{/if}}">
+    </form>
+  </li>
+</template>

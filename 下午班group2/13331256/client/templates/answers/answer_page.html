@@ -1,0 +1,16 @@
+<template name="answerPage">
+  <p>
+    Your old answer: <br> {{body}}
+  </p>
+  <h4><span><b>Score: </b>{{score}}</span></h4>
+  <form class="main form">
+    <div class="form-group {{errorClass 'body'}}">
+      <label class="control-label" for="answer">Answer</label>
+      <div class="controls">
+        <textarea name="answer" id="body" class="form-control" rows="3" disabled="{{#if isDisabled}}disabled{{/if}}">{{#if isDisabled}}The deadline has passed, you can't answer any more.{{/if}}</textarea>
+        <span class="help-block">{{errorMessage 'body'}}</span>
+      </div>
+    </div>
+    <input type="submit" value="Submit" class="btn btn-primary" disabled="{{#if isDisabled}}disabled{{/if}}">
+  </form>
+</template>

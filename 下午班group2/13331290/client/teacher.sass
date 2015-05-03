@@ -1,0 +1,40 @@
+@import common
+
+.nav
+	height: 50px
+	margin-bottom: 40px
+	ul
+		list-style-type: none
+		text-align: center
+		li
+			display: inline-block
+			font-size: 20px
+			background: $white-bg
+			color: $black-font
+			padding: 14px 14px 9px 14px
+			width: 120px
+			cursor: pointer
+			border-bottom: 5px solid transparent
+			&:hover
+				background: white
+				color: black
+
+.container
+	width: auto
+	position: relative
+
+	.publish-assignment, .edit-assignment
+		.form-group
+			text-align: right
+			margin-right: 37%
+			label
+				background: $white-bg
+				padding: 5px
+				margin-right: 10px
+				border-radius: 2px
+			label input, label textarea
+				margin-left: 20px
+
+.tab-highlight
+	border-bottom: 5px solid white !important
+	color: black !important

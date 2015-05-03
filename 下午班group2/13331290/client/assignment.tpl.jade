@@ -1,0 +1,17 @@
+table.assignment-table
+  thead
+    tr
+      th Title
+      th Submitted
+      th Deadline
+      th Operation
+  tbody
+    each assignment_list
+      tr
+        td #{title}
+        td #{submission.length}
+        td.before-deadline {{changeTimeFormat deadline}}
+        td 
+          span.edit(id='#{_id}') Edit
+          span.delete(id='#{_id}') Delete
+          span.revise.hidden(id='#{_id}') Revise

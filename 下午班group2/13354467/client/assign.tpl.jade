@@ -1,0 +1,15 @@
+hr
+if isTeacher
+	form
+		h3 布置作业
+		.ui.labeled.input
+			input.form-control(type='text',name='title',placeholder='作业标题',required)
+
+		.ui.labeled.input
+			input.form-control(type='datetime-local' name='ddl' required)
+		br
+		br
+		textarea.form-control(rows='3' cols='20' name='require' placeholder='作业要求' required)
+
+		.ui.button.clear 清除
+		input.ui.button.positive.submit(type='submit' value='发布')

@@ -1,0 +1,76 @@
+<head>
+  <title>My homework</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Welcome to my site!</h1>
+      <div id='login'>{{> loginButtons}}</div>
+    </header>
+
+    <!-- 如果是老师 -->
+    <!-- 发布新作业 -->
+    {{#if isTeacher}}
+      <form class="new-hw">
+        <fieldset>
+          <legend> New homework!</legend>
+          <input type='text' class='wide' name='hwname' placeholder='homework name' required="required"/>
+          <textarea class='mytext' name='hwrequest' placeholder="Type your essay here!" required="required"></textarea>
+          <b>Deadline: </b><input type='date' name='ddl' required="required" />
+          <input type='submit' value='发布'/>
+        </fieldset>
+      </form>
+    {{/if}}
+
+    <ul>
+      {{#each hws}}
+        {{> hw}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+
+<template name="hw">
+  <!-- {{#if currentUser.username=='teacher'}} -->
+  <li class="hwlist">
+    <span class="text"><strong>{{hwname}}</strong> - {{username}}</span><br>
+    <p>{{request}}</p>
+    <span class='text'><b>Deadline: </b>{{ddl}}</span>
+
+    <!-- 如果是学生，则可以提交对应的作业 -->
+    {{#if ifStudent}}
+      <form class="new-essay">
+        <fieldset>
+          <legend> my essay!</legend>
+          <textarea name='text' placeholder="Type your essay here!" required="required"></textarea>
+          <input type='text' name='hwid' class='displaynone' value = "{{_id}}" />
+          <input type='text' name='hwname' class='displaynone' value = "{{hwname}}" />
+          <input type='submit' value='Submit'/>
+        </fieldset>
+      </form>
+    {{/if}}
+
+    <!-- 展示已提交学生作业 -->
+    {{#if ifTeacher}}
+      <ul>
+        {{#each submits}}
+          {{> sub}}
+        {{/each}}
+      </ul>
+    {{/if}}
+  </li>
+</template>
+
+<template name='sub'>
+  <li class='hwli'>
+    -from student: <strong>{{username}}</strong><br>
+    <span>{{essay}}</span>
+    <form class='mark'>
+      <input type='text' name='mark' required='required'/>
+      <input type='text' name='hwid' class='displaynone' value = "{{hwid}}" />
+      <input type='text' name='studentname' class='displaynone' value = "{{username}}" />
+      <input type = 'submit' value='评分'>
+    </form>
+  </li>
+</template>

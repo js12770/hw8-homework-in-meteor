@@ -1,0 +1,93 @@
+if isTeacher
+  hr
+  #group-list
+    div
+      h3 已经布置作业
+      table.table
+        thead
+          tr
+            th 作业标题
+            th 作业要求
+            th 截止时间
+            th 操作
+            th 操作
+            th 操作
+        tbody
+          each homeworks1
+            tr
+              td(width='150') #{title}
+              td(style='word-break:break-all',width='600') #{require}
+              td(width='150') #{ddl}
+              td(width='100') 
+                .ui.button.negative.showmodify 修改/隐藏
+              td(width='100')
+                .ui.button.negative.check 查看
+              td(width='100')
+                .ui.button.negative.delete 删除
+            tr(style="display:none")
+              td(colspan='4')
+                table
+                  thead
+                    tr
+                      th 学生
+                      th 作业
+                  tbody
+                    each studenthomeworks
+                      tr
+                        td(width='200') #{student}
+                        td(width='300') #{answer}
+            tr(style="display:none")
+              td
+                form
+                  input.form-control(type='text' name='title' placeholder='作业标题' required)
+                  .ui.button.positive.modifytitle 确认修改
+              td(style='word-break:break-all') 
+                form
+                  textarea.form-control(rows='1' cols='20' name='require' placeholder='作业要求' required)
+                  .ui.button.positive.modifyrequire 确认修改
+              td 
+                form
+                  input.form-control(type='datetime-local' name='ddl' required)
+                  input.ui.button.positive.modifyddl(type='submit' value='确认修改')
+              td
+
+              td
+
+    hr
+    div
+      h3 已经截止作业
+      table.table
+        thead
+          tr
+            th 作业标题
+            th 作业要求
+            th 截止时间
+            th 操作
+        tbody
+          each homeworks2
+            tr
+              td(width='150') #{title}
+              td(style='word-break:break-all',width='600') #{require}
+              td(width='150') #{ddl}
+              td(width='100')
+                .ui.button.negative.check 批改
+            tr(style="display:none")
+              td(colspan='4')
+                table
+                  thead
+                    tr
+                      th 学生
+                      th 作业
+                      th 分数
+                      th 给分
+                      th 
+                  tbody
+                    each studenthomeworks
+                      tr
+                        td(width='200') #{student}
+                        td(width='300') #{answer}
+                        td(width='100') #{score}
+                        td(width='100')
+                          input.form-control(type='text' name='score' placeholder='分数' required)
+                        td(width='100')
+                          .ui.button.positive.give 确认
