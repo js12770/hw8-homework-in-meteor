@@ -1,0 +1,24 @@
+div.container.assignment
+    div.row
+        div.signup-wall
+            h1.text-center 作业列表
+            table.table.table-striped.table-hover
+                thead
+                    tr
+                        th 作业
+                        th 
+                            i.icon-time 截止时间
+                        th 操作
+                tbody
+                    each assignments
+                        tr
+                            td #{title}
+                            td #{deadline}
+                            td
+                                button(class='btn-info btn seedetail', id='#{_id}') 查看
+            if isteacher
+                div.text-center
+                    button.btn.btn-lg.btn-primary.gosetassignment 发布作业
+                    button.btn.btn-lg.btn-primary.gradeassignment 批改作业
++assignmentDetail
++myAssignmentDetail
