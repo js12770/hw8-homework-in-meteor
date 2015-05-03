@@ -1,0 +1,119 @@
+<head>
+  <title>My Homework</title>
+</head>
+
+<body>
+	<div class='nav navbar navbar-inverse navbar-fixed-top'>
+		<h2 style='color:white' class='navbar-brand'>My Homework</h2>
+		<div class='signup'>{{> loginButtons}}</div>
+	</div>
+	<div class='publish'></div>
+	{{#if isTeacher}}
+		{{> publishAssignment}}
+	{{/if}}
+	<h3><strong>发布的作业</strong></h3>
+	<ul class='list-group'>
+		{{> showAssignments}}
+	</ul>
+	<h3 strong><strong>提交的作业</strong></h3>
+	<ul class='list-group'>
+	  	{{> uploadedAssignments}}
+	</ul>
+</body>
+
+<template name="publishAssignment">
+	<div>
+		<form>
+			<p style='display:inline'>Title</p>
+			<input type='text' name='title' required>
+			<p style='display:inline'>Content</p>
+			<input type='text' name='content' required>
+			<p style='display:inline'>Deadline</p>
+			<input type='datetime-local' name='deadline' required>
+			<input type='submit' value='submit'>
+		</form>
+	</div>
+</template>
+
+<template name="showAssignments">
+	{{#each assignments}}
+		<li class='list-group-item list-group-item-success'>
+			<p style='display:inline'> Title </p>
+			<a class='title label label-info'>{{title}}</a>
+			<p style='display:inline'> created at</p>
+			<p class='label label-warning'>{{createdAtx}}</p>
+			<p style='display:inline'> until</p>
+			<p class='label label-warning'>{{ddlx}}</p>
+		</li>
+		<div class='content' style="visibility:visible">
+			<p>{{content}}</p>
+		</div>
+		{{#if isTeacher}}
+			{{> uploadContent}}
+			{{> uploadDdl}}
+		{{else}}
+			{{> uploadAnswer}}
+		{{/if}}
+	{{/each}}
+</template>
+
+<template name="uploadAnswer">
+	<form>
+		<input type='hidden' name="hw_id" value={{_id}}>
+		<input type='hidden' name="title" value={{title}}>
+		<input type='text' name='answer' required>
+		<input type='submit' value='submit'>
+	</form>
+</template>
+
+<template name="uploadContent">
+	<form>
+		<p style='display:inline'>Content</p>
+		<input type='text' name='content' required>
+		<input type='submit' value='submit'>
+	</form>
+</template>
+
+<template name="uploadDdl">
+	<form>
+		<p style='display:inline'>Deadline</p>
+		<input type='datetime-local' name='deadline' required>
+		<input type='submit' value='submit'>
+	</form>
+</template>
+
+<template name="uploadedAssignments">
+	{{#if isTeacher}}
+		{{#each submittalsx}}
+			<li class='list-group-item list-group-item-success'>
+				<p class='title label label-success'>{{username}}</p>
+				<p style='display:inline'> answered </p>			
+				<p class='title label label-info'>{{title}}</p>
+				<p style='display:inline'> submitted at</p>
+				<p class='label label-warning'>{{submittedAtx}}</p>
+				<p class='label label-primary'>{{grade}}</p>
+			</li>
+			<div class='answer' style="visibility:visible">
+				<p>{{answer}}</p>
+			</div>
+			<form>
+				<input type='text' name='grade' required>
+				<input type='submit' value='grade'>
+			</form>
+		{{/each}}
+	{{else}}
+		{{#each submittals}}			
+			<li class='list-group-item list-group-item-success'>
+				<p class='title label label-success'>{{username}}</p>
+				<p style='display:inline'> answered </p>			
+				<p class='title label label-info'>{{title}}</p>
+				<p style='display:inline'> submitted at</p>
+				<p class='label label-warning'>{{submittedAtx}}</p>
+				<p class='label label-primary'>{{grade}}</p>
+			</li>
+			<div class='answer' style="visibility:visible">
+				<p>{{answer}}</p>
+			</div>
+		{{/each}}
+	{{/if}}
+</template>

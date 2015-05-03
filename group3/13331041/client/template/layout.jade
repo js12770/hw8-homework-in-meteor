@@ -1,0 +1,7 @@
+template(name = "layout")
+  .container
+    header(class="navbar-inverse" role="navigation")
+      div.navbar-head
+        a(class = "navbar-brand", href = "/") Microscope
+    div(id = "main", class = "row-fluid")
+      +yield
