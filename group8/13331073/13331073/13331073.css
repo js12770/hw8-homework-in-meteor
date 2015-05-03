@@ -20,7 +20,7 @@ body {
 .container {
   max-width: 600px;
   margin: 0 auto;
-  min-height: 100%;
+  
   background: white;
 }
 
@@ -55,7 +55,7 @@ ul {
   padding: 0;
   background: white;
   border-bottom: #eee solid 1px;
-  height: 220px;
+  height: 300px;
 }
 
 .delete, .delete_answer {
@@ -113,7 +113,7 @@ h2 {
   margin-left: +250px;
 }
 
-.changeDeadline, .changeRequirement, .new-answer {
+.changeDeadline, .changeRequirement, .new-answer, .score {
   margin-top: -10px;
   margin-left: +15px;
 }

@@ -9,10 +9,21 @@ if (Meteor.isClient) {
       return Homeworks.find({});
     },
     answers: function () {
-      return Answers.find({});
+      var username = Meteor.user().username;
+      if(username.charAt(username.length - 1) === 'T') {
+        return Answers.find({});
+      } else {
+        return Answers.find({AnswerAuthor: username});
+      }
     }
   });
-  Template.body.events({
+  Template.createHomework.helpers({
+    isTeacher: function () {
+      var username = Meteor.user().username;
+      return username.charAt(username.length - 1) === 'T';
+    }
+  });
+  Template.createHomework.events({
     "submit .new-homework": function (event) {
       var HomeworkTitle = event.target.HomeworkTitle.value;
       var Homework_Deadline = event.target.HomeworkDeadline.value;
@@ -63,11 +74,9 @@ if (Meteor.isClient) {
     "submit .new-answer": function (event) {
       homework = Homeworks.findOne({_id: this._id});
       var AnswerTitle = homework.HomeworkTitle;
-      var AnswerDeadlineValue = homework.HomeworkDeadlineValue;
-      var AnswerDeadline = homework.HomeworkDeadline;
       var AnswerAuthor = Meteor.user().username;
       var AnswerContent = event.target.HomeworkAnswer.value;
-      Meteor.call("addAnswer", AnswerTitle, AnswerDeadline, AnswerDeadlineValue, AnswerAuthor, AnswerContent);
+      Meteor.call("addAnswer", AnswerTitle, AnswerAuthor, AnswerContent);
       event.target.HomeworkAnswer.value = "";
       return false;
     }
@@ -85,6 +94,13 @@ if (Meteor.isClient) {
   Template.answer.events({
     "click .delete_answer": function () {
       Meteor.call("deleteAnswer", this._id)
+    },
+    "submit .score": function (event) {
+      var score = event.target.AnswerScore.value;
+      if(!score) return false;
+      Meteor.call("score", this._id, score);
+      event.target.AnswerScore.value = "";
+      return false;
     }
   });
   Accounts.ui.config({
@@ -95,6 +111,8 @@ if (Meteor.isClient) {
 Meteor.methods({
   addHomework: function (HomeworkTitle, HomeworkDeadline, HomeworkDeadlineValue, HomeworkRequirement) {
     if(Homeworks.findOne({HomeworkTitle: HomeworkTitle})) return;
+    var username = Meteor.user().username;
+    if(username.charAt(username.length - 1) !== 'T') return;
     Homeworks.insert({
       HomeworkTitle: HomeworkTitle,
       HomeworkDeadline: HomeworkDeadline,
@@ -111,27 +129,31 @@ Meteor.methods({
   changeDeadline: function (taskId, homework_deadline, homework_deadline_value) {
     var now_time = (new Date()).valueOf();
     var deadline = Homeworks.findOne({_id: taskId}).HomeworkDeadlineValue;
-    if(deadline.valueOf() < now_time.valueOf()) return;
+    if(deadline < now_time) return;
+    var homework = Homeworks.findOne({_id: taskId});
+    var answers = Answers.find({AnswerTitle: homework.HomeworkTitle});
     Homeworks.update(taskId, { $set: { HomeworkDeadline: homework_deadline, HomeworkDeadlineValue: homework_deadline_value } })
   },
   changeRequirement: function (taskId, new_requirement) {
     var now_time = (new Date()).valueOf();
     var deadline = Homeworks.findOne({_id: taskId}).HomeworkDeadlineValue;
-    if(deadline.valueOf() < now_time.valueOf()) return;
+    if(deadline < now_time) return;
     Homeworks.update(taskId, { $set: { HomeworkRequirement: new_requirement} })
   },
-  addAnswer: function (AnswerTitle, AnswerDeadline, AnswerDeadlineValue, AnswerAuthor, AnswerContent) {
+  addAnswer: function (AnswerTitle, AnswerAuthor, AnswerContent) {
     if(Answers.findOne({AnswerTitle: AnswerTitle, AnswerAuthor: AnswerAuthor})) {
       answer = Answers.findOne({AnswerTitle: AnswerTitle, AnswerAuthor: AnswerAuthor});
       Answers.update(answer._id, { $set: { AnswerContent: AnswerContent} })
       return;
     }
+    var now_time = (new Date()).valueOf();
+    var deadline = Homeworks.findOne({HomeworkTitle: AnswerTitle}).HomeworkDeadline;
+    if(deadline < now_time) return;
     Answers.insert({
       AnswerTitle: AnswerTitle,
-      AnswerDeadline: AnswerDeadline,
-      AnswerDeadlineValue: AnswerDeadlineValue,
       AnswerAuthor: AnswerAuthor,
       AnswerContent: AnswerContent,
+      AnswerScore: "Teacher has not given points yet",
       createdAt: new Date(),
       owner: Meteor.userId(),
       username: Meteor.user().username
@@ -140,6 +162,13 @@ Meteor.methods({
   deleteAnswer: function (taskId) {
     Answers.remove(taskId);
   },
+  score: function (taskId, score) {
+    var now_time = (new Date()).valueOf();
+    var HomeworkTitle = Answers.findOne({_id: taskId}).AnswerTitle;
+    var deadline = Homeworks.findOne({HomeworkTitle: HomeworkTitle}).HomeworkDeadlineValue;
+    if(deadline >= now_time) return;
+    Answers.update(taskId, { $set: { AnswerScore: score} })
+  }
 });
 
 if (Meteor.isServer) {

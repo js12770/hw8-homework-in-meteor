@@ -7,23 +7,18 @@
     <header>
       <h1>My Homework</h1>
       {{> loginButtons}}
-      <form class="new-homework">
-        <input type="text" name="HomeworkTitle" placeholder="Homework Title" />
-        <input type="datetime-local" name="HomeworkDeadline" placeholder="Homework Deadline" />
-        <input type="text" name="HomeworkRequirement" placeholder="Homework Requirement" />
-        <button type="submit">Create Homework</button>
-      </form>
+      {{#if currentUser}}
+        {{> createHomework}}
+      {{/if}}
     </header>
 
     {{#if currentUser}}
-      <ul>
-        {{#each homeworks}}
-          {{> homework}}
-        {{/each}}
-        {{#each answers}}
-          {{> answer}}
-        {{/each}}
-      </ul>
+      {{#each homeworks}}
+        {{> homework}}
+      {{/each}}
+      {{#each answers}}
+        {{> answer}}
+      {{/each}}
     {{/if}}
   </div>
 </body>
@@ -68,9 +63,26 @@
       <button class="delete_answer">&times;</button>
       <h2>Answer</h2>
       <li>Homework Title: {{AnswerTitle}}</li>
-      <li>Homework Deadline: {{AnswerDeadline}}</li>
       <li>Answer Author: {{AnswerAuthor}}</li>
       <li>Answer Content: {{AnswerContent}}</li>
+      <li>Answer Score: {{AnswerScore}}</li>
+      {{#if isTeacher}}
+        <form class="score">
+          <input type="text" name="AnswerScore" placeholder="Score" />
+          <button type="submit" class="button">Score</button>
+        </form>
+      {{/if}}
     {{/if}}
   </ul>
+</template>
+
+<template name="createHomework">
+  {{#if isTeacher}}
+    <form class="new-homework">
+      <input type="text" name="HomeworkTitle" placeholder="Homework Title" />
+      <input type="datetime-local" name="HomeworkDeadline" placeholder="Homework Deadline" />
+      <input type="text" name="HomeworkRequirement" placeholder="Homework Requirement" />
+      <button type="submit">Create Homework</button>
+    </form>
+  {{/if}}
 </template>
