@@ -1,0 +1,16 @@
+<template name="homeworkItem">
+  <div class="post">
+    <div class="post-content">
+      <h3><a href="{{url}}">{{title}}</a>
+      <br>
+      <span>{{description}}</span>
+      <br>
+      <span><b>{{deadline}}</b></span></h3>
+      <p>
+        submitted by {{author}}
+        {{#if owner}}<a href="{{pathFor 'homeworkEdit'}}">Edit</a>{{/if}}
+      </p>
+    </div>
+    <a href="{{pathFor 'homeworkPage'}}" class="discuss btn btn-default">{{buttonTips}}</a>
+  </div>
+</template>
