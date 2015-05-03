@@ -1,0 +1,5 @@
+Template['index'].events({
+	'submit form':(evt)!->
+		evt.preventDefault!;
+		Router.go('home');
+});
