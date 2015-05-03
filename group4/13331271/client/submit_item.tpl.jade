@@ -1,0 +1,19 @@
+tr
+    td #{user.lastName}#{user.firstName}
+    td 
+        button.btn.btn-primary(data-toggle="modal", data-target="##{_id}") View and Grade
+    td #{time}
+    td #{score}
+    .modal.fade(id="#{_id}", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    h3.text-primary Homework #{title} done by #{user.lastName}#{user.firstName}
+                .modal-body
+                    pre #{content}
+                .modal-footer
+                    form.grade-form(method='POST')
+                        input.form-control.score-input(required, name="score" type="text" placeholder="Grade here")
+                        input(style="display:none", name="id", value="#{_id}")
+                        button.btn.btn-danger(data-dismiss="modal") Close
+                        button.btn.btn-primary.pull-left Grade

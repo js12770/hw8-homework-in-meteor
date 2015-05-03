@@ -1,0 +1,22 @@
+div.container
+    div.row
+        div.col-xs-10.col-sm-10.col-md-10.col-md-offset-1
+            h2.text-primary.text-center Welcome back, #{user.lastName}#{user.firstName}! 
+            br
+            div.menu-wall
+                h3
+                    button.btn.go-back-btn.btn-info Go back to homepage
+                h3 
+                    span.label.label-primary Title: #{title}
+                h3.text-primary Here is the homework of all students, you can grade it.
+                br
+
+                table.table.table-hover.text-center.all-homework
+                    tr
+                        th Name
+                        th Content
+                        th Submit Time
+                        th Score
+                    each submits
+                        +submit_item
+            a(href="#signout" class='signout-link text-center new-account') Sign Out

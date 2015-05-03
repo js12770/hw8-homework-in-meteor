@@ -1,0 +1,9 @@
+if haveAssignments
+  .assignments.list-group
+    each assignments
+      +assignmentItem
+else
+  .main
+    p.bg-warning
+      span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+      | 没有作业

@@ -1,0 +1,36 @@
+.signup.main
+  form.form-horizontal
+    .form-group
+      label.col-sm-2.control-label(for='username') 用户名
+      .col-sm-8
+        input.form-control(type='text' name='username' id='username' placeholder='用户名' required)
+
+    .form-group
+      label.col-sm-2.control-label(for='password') 密码
+      .col-sm-8
+        input.form-control(type='password' name='password' id='password' placeholder='密码' required)
+
+    .form-group
+      label.col-sm-2.control-label(for='name') 姓名
+      .col-sm-8
+        input.form-control(type='text' name='name' id='name' placeholder='姓名' required)
+
+    .form-group
+        label.col-sm-2.control-label(for='email') 邮箱
+        .col-sm-8
+          input.form-control(type='email' name='email' id='email' placeholder='邮箱' required)
+
+    .form-group
+      label.col-sm-2.control-label 身份
+      .col-sm-8
+        label.radio-inline
+          input(type='radio' name='identity' id='Student' value='Student' checked='checked')
+          | 学生
+        label.radio-inline
+          input(type='radio' name='identity' id='Teacher' value='Teacher')
+          | 教师
+
+    .form-group
+      .col-sm-offset-2.col-sm-8
+        input.btn.btn-primary(type='submit' value='注册')
+        a.col-sm-offset-1(href='/signin') 已有账号 直接登录

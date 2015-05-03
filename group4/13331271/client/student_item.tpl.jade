@@ -1,0 +1,58 @@
+tr
+    td #{issue.user.lastName}#{issue.user.firstName}
+    td #{issue.title}
+    td 
+        button.btn.btn-primary(data-toggle="modal", data-target="##{issue._id}") View
+        div.modal.fade(id="#{issue._id}", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+            .modal-dialog
+                .modal-content
+                    .modal-header
+                        h3.text-center.text-primary #{issue.title}
+                    .modal-body 
+                        pre #{issue.content}
+                    .modal-footer
+                        button.btn.btn-default(data-dismiss="modal") Close
+    td #{issue.deadline}
+    td 
+        if isoverdue issue.deadline
+            button.btn.btn-default(disabled) Overdue
+        else
+            button.btn.btn-primary(data-toggle="modal", data-target="##{issue.title}") Submit
+        div.modal.fade.text-left(id="#{issue.title}", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+            .modal-dialog.modal-lg
+                .modal-content
+                    .modal-header
+                        h2.text-center.text-primary Submit homework
+                    form.submit-form(method='POST')
+                        .modal-body 
+                            .issue.center-block
+                                div.form-group
+                                    label Title
+                                    input(readonly, value="#{issue.title}", type='text', name='title', class='form-control', placeholder='Title',required, autofocus)
+                                    input(style="display:none", value="#{issue._id}", type='text', name='issueid')
+                                hr
+                                div.form-group
+                                    label Content
+                                    textarea(rows="10" name='content', class='form-control', placeholder="Your homework should be written here",required, autofocus)
+                        .modal-footer
+                            .text-center
+                                button.btn.btn-success.btn-margin Submit
+                                button.btn.btn-danger.btn-margin(data-dismiss="modal") Close
+    td 
+        if submit.time
+            button.btn.btn-primary(data-toggle="modal", data-target="#submission#{issue.title}") #{submit.time}
+            div.modal.fade(id="submission#{issue.title}", tabindex="-1", role="dialog", aria-labelledby="myModalLabel", aria-hidden="true")
+                .modal-dialog
+                    .modal-content
+                        .modal-header
+                            h3.text-primary My latest submission of #{issue.title}
+                        .modal-body
+                            pre #{submit.content}
+                        .modal-footer
+                            button.btn.btn-default(data-dismiss="modal") Close
+        else
+            button.btn.btn-default(disabled) None
+    if submit.score
+        td #{submit.score}
+    else
+        td None

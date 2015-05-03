@@ -1,0 +1,31 @@
+if homework
+  .already
+    p.bg-info
+      span.glyphicon.glyphicon-thumbs-up(aria-hidden='true')
+      | 你已经提交过了
+    p #{homework.time}
+    p #{homework.content}
+
+.update-or-submit
+  if overtime
+    br
+  else
+    if homework
+      form#again.form-horizontal
+        .form-group
+          label.col-sm-1.control-label(for='content') 内容
+          .col-sm-8
+            textarea.form-control(name='content' id='content' placeholder='你的作业写在这里' required)
+        .form-group
+          .col-sm-offset-1.col-sm-8
+              input.btn.btn-primary(type='submit' value='更新')
+    else
+      form#first.form-horizontal
+        .form-group
+          label.col-sm-1.control-label(for='content') 内容
+          .col-sm-8
+            textarea.form-control(name='content' id='content' placeholder='你的作业写在这里' required)
+          input(type='hidden' name='_id' value='#{homework._id}')
+        .form-group
+          .col-sm-offset-1.col-sm-8
+              input.btn.btn-primary(type='submit' value='提交')

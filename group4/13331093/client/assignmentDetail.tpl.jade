@@ -1,0 +1,25 @@
+link(rel='stylesheet', href='/stylesheets/assignmentdetail.css')
+div.container.assignmentdetail.hidden
+    div.row
+        div.panel.panel-primary
+            div.panel-heading
+                h1.text-center.panel-title #{assignment.title}
+            h4
+                i.icon-user 作者：#{assignment.author}
+            h4.ddl
+                i.icon-time 截止日期：#{assignment.deadline}
+            h3
+                i.icon-magic 作业要求：!{assignment.content}
+            //p #{currentuser}
+            div.text-center
+                if isteacher
+                    button(class='oper-btn btn btn-lg btn-primary edit', id='#{assignment._id}')
+                        i.icon-pencil 修改
+                    button(class='oper-btn btn btn-lg btn-danger delete', id='#{assignment._id}')
+                        i.icon-trash 删除
+                else
+                    if isvalid
+                        button(class='oper-btn btn btn-lg btn-success submitbtn', id='#{assignment._id}')
+                            i.icon-pencil 提交作业
+                    else
+                        p 已超过截止日期，无法提交作业

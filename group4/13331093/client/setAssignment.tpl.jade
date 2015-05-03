@@ -1,0 +1,32 @@
+
+
+div.container.setassignment.hidden
+    div.row.signup-wall
+        if ispublish
+            h1.text-center 发布作业
+            form.text-center.publish
+                div.form-group
+                    label(for='title' class='control-label') 标题
+                    input(type='text' name='title' size="30")
+                    label(for='deadline' class='control-label')
+                        i.icon-time 截止时间
+                    input(type='text' placeholder="点击选择截止时间"  name="deadline" size="14" id="datetimepicker1")
+                script(id="editor1", type="text/plain", src="/ueditor/lang/zh-cn/zh-cn.js", style="width:1024px;height:500px;margin:0 auto;margin-bottom:20px;")
+                //script UE.getEditor('editor')
+                
+                button(class='btn btn-lg btn-primary pub', type='submit', id="submit")
+                    i.icon-pencil 发布
+        else
+            h1.text-center 修改作业
+            form.text-center.edit
+                div.form-group
+                    label(for='title' class='control-label') 标题
+                    input(type='text' name='title' size="30" value='#{assignment.title}')
+                    label(for='deadline' class='control-label')
+                        i.icon-time 截止时间
+                    input(type='text' placeholder="点击选择截止时间"  name="deadline"  size="14" id="datetimepicker2" value='#{assignment.deadline}') 
+                script(id="editor2", type="text/plain", src="/ueditor/lang/zh-cn/zh-cn.js", style="width:1024px;height:500px;margin:0 auto;margin-bottom:20px;")
+                //script UE.getEditor('editor')
+ 
+                button(class='btn btn-lg btn-primary pub', type='submit', id="#{assignment._id}")
+                    i.icon-pencil 修改

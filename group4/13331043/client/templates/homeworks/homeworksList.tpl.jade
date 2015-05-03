@@ -1,0 +1,13 @@
+if haveHomeworks
+  .homework.list-group
+    each homeworks
+      +homeworkItem
+else
+  .main
+    if overtime
+      p.bg-danger
+        span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+        | 截止日期已经到了
+    p.bg-warning
+      span.glyphicon.glyphicon-exclamation-sign(aria-hidden='true')
+      | 尚未有人提交
