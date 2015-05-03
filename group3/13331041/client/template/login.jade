@@ -1,13 +1,21 @@
 template(name="login")
-  nav(class="navbar navbar-inverse",role="navigation")
-    .container-fluid
-      .navbar-header
-        button(type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navigation")
-          span(class="sr-only") Toggle navigation
-          span(class="icon-bar")
-          span(class="icon-bar")
-          span(class="icon-bar")
-        a(class="navbar-brand" href="/login") Homework
-      div(class="collapse navbar-collapse" id="navigation")
-        ul(class = "nav navbar-nav navbar-right")
-          +loginButtons
+  nav(class='navbar navbar-inverse navbar-fixed')
+        div(class='container')
+          div.row
+            div.col-md-8
+              div(class='navbar-head')
+                a(class='navbar-brand', href) HomeWork
+              div(class='navbar-collapse collapse' id='navbar')
+                ul(class = 'nav navbar-nav')
+                  li.active
+                    a(href='/home') home
+                  li
+                    a(href='/profile') profile
+                  li
+                    a(href='/create') create
+                  li
+                    a(href='/history') history
+                  li
+                    a(href='/stu_homework') homework
+                ul(class = "nav navbar-nav navbar-right")
+                  +loginButtons

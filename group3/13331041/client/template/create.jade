@@ -18,12 +18,8 @@ template(name = "create")
                   a(href='/history') history
                 li
                   a(href='/homework') homework
-          div.col-md-4
-            ul.nav.navbar-nav
-              li
-                a.navbar-link.nav #{user.username}
-              li
-                a(href="/" class="navbar-link") Log out
+              ul(class = "nav navbar-nav navbar-right")
+                  +loginButtons
     div.container
       div.row.col-md-offset-2.col-md-8
         form(class ='form-horizontal', method = 'post' action= '/create')
@@ -52,7 +48,7 @@ template(name = "create")
                   input(type = 'time', name = 'time')
               .control-group
                 .controls
-                  button.btn.btn-success.submit Create
+                  button(class= "btn btn-success submit", type = "submit") Create
             div.col-md-5
               label.control-label detail
               .textarea

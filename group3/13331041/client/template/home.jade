@@ -20,12 +20,8 @@ template(name = "home")
                     a(href='/history') history
                   li
                     a(href='/stu_homework') homework
-            div.col-md-4
-              ul.nav.navbar-nav
-                li
-                  a.navbar-link.nav #{user.username}
-                li
-                  a(href="/" class="navbar-link") Log out
+                ul(class = "nav navbar-nav navbar-right")
+                  +loginButtons
       //-else
         nav(class='navbar navbar-inverse navbar-fixed')
           div(class='container')
@@ -45,9 +41,10 @@ template(name = "home")
                       a(href='/history') history
                     li
                       a(href='/my_homework') my homework
-              div.col-md-4
-                ul.nav.navbar-nav
-                  li
-                    a.navbar-link.nav #{user.username}
-                  li
-                    a(href="/" class="navbar-link") Log out
+              ul(class = "nav navbar-nav navbar-right")
+                +loginButtons
+      div.container
+        div.row
+          div.col-sm-6.col-md-10.col-md-offset-1    
+            div.well
+              p Welcome to our homework system. Your homework is as shown below
