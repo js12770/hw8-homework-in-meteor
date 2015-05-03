@@ -17,10 +17,14 @@
 ```javascript
     cd 13331129
 ```
-3. 使用meteor命令
+3.使用meteor命令
 ```javascript
     meteor
 ```
+4.其实你可以直接去http://homeworksystem.meteor.com/
+
+##注明
+注册时出现错误是因为用户名已存在，请更换注册用户名
 
 ##问题反馈
 在使用中有任何问题，如不能够正常运行，请联系QQ: 571738739,或者添加Comment
