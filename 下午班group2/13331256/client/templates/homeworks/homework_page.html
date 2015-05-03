@@ -1,0 +1,12 @@
+<template name="homeworkPage">
+    {{> homeworkItem}}
+    {{#if isStudent}}
+      {{> answerPage theAnswer}}
+    {{else}}
+    <ul class="comments">
+      {{#each answers}}
+        {{> answerItem}}
+      {{/each}}
+    </ul>
+    {{/if}}
+</template>
