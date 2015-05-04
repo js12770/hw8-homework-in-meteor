@@ -1,0 +1,70 @@
+<head>
+  <title>MyHomework</title>
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>MyHomework in MeteorJS</h1>
+
+			{{> loginButtons}}
+
+      <span class="userType">{{#if currentUser}}({{userType}}){{/if}}</span>
+      
+      {{#if isNotSetType}}
+        {{> typeCheck}}
+      {{/if}}
+      
+      {{#if isTeacher}}
+        {{> addRequirements}}
+      {{/if}}
+
+    </header>
+
+    <ul>
+      {{#if currentUser}}
+        {{> requirement}}
+      {{/if}}
+    </ul>
+
+  </div>
+</body>
+
+
+<template name="requirement">
+  {{#each requirements}}
+    <li>
+      {{#if isOwner}}
+        <button class="delete" title="Close">&times;</button>
+      {{/if}}
+      <span class="requirement-content">
+        <p><strong>{{title}}: </strong></p><p>{{content}}</p>DDL: <strong>{{deadline}}</strong> - By: <strong>{{teacher}}</strong></span>
+
+      <form class="submit-homework">
+        <p>Submit:(<span id="teacher">{{teacher}}</span>)</p>
+        <input type="text" name="homework" placeholder="Submit your homework" required autocomplete="off" />
+        <input type="submit" name="homework_submit" calss="homework_submit" value="Submit">
+    </form>
+
+    </li>
+  {{/each}}
+</template>
+
+<template name="typeCheck">
+  <form class="get-user-type">
+    <p>Please choose your User Type :</p>
+    <input type="radio" name="user_type" value="teachers" checked="checked">Teachers
+    <input type="radio" name="user_type" value="students">Students
+    <input type="submit" name="user_type_submit" calss="user_type_submit" value="Submit">
+  </form>
+</template>
+
+<template name="addRequirements">
+    <form class="new-requirements">
+      <p>Type to add new requirements :</p>
+      <input type="text" name="title" placeholder="Title" required autocomplete="off" />
+      <input type="text" name="deadline" placeholder="Deadline" required autocomplete="off" />
+      <input type="text" name="content" placeholder="Content" required autocomplete="off" />
+      <input type="submit" name="requirements_submit" class="requirements_submit" value="Submit">
+    </form>
+</template>
