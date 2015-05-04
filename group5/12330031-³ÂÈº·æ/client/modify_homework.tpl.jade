@@ -1,0 +1,16 @@
+if isInRole 'admin'
+  form#modify-homework
+    fieldset
+      legend 作业修改
+      .ui.labeled.input
+        input(type='text' name='title_modify' placeholder='标题' data-parsley-minlength='1' data-parsley-trigger='keyup' required value='')
+  
+      .ui.labeled.input
+        input(type='date' name='date_modify' data-parsley-trigger='keyup' required)
+    
+      .ui.labeled.input
+        textarea(name='description_modify' placeholder='要求' data-parsley-minlength='1' data-parsley-trigger='keyup' required)
+        
+      .ui.button.cancel 取消
+      .ui.button.positive.submit_modify_homework 提交
+

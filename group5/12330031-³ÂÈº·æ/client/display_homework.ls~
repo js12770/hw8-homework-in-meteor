@@ -1,0 +1,6 @@
+Template['display_homework'].helpers {
+  homeworks: ->
+    homeworks = Homeworks.find!fetch!
+    homeworks
+}
+

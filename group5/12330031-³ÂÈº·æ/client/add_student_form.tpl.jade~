@@ -1,0 +1,17 @@
+if isInRole 'admin'
+  form#add-homework(data-parsley-validate)
+    fieldset
+      legend 新作业发布
+      .ui.labeled.input
+        input(type='text' name='title' placeholder='标题' data-parsley-minlength='1' data-parsley-trigger='keyup' required)
+  
+      .ui.labeled.input
+        input(type='date' name='date' data-parsley-trigger='keyup' required)
+    
+      .ui.labeled.input
+        textarea(name='description' placeholder='要求' data-parsley-minlength='1' data-parsley-trigger='keyup' required)
+      .ui.labeled.hide
+        input(type='text' name='_id')
+      .ui.button.clear 清除
+      .ui.button.positive.submit 提交
+

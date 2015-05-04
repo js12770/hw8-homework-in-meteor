@@ -1,0 +1,9 @@
+.info
+  .ui.label.huge.grey.students-amount 学生总数：
+    .detail #{studentsAmount}
+  if isInRole 'admin'
+    .ui.input
+      input.groups-amout(type='number' placeholer='总的组数')
+      
+    .ui.button.positive.grouping 开始分组
+    .ui.button.negative.clear-all-student 清除所有学生
