@@ -1,0 +1,192 @@
+<head>
+  <title>myHomework</title>
+</head>
+
+<body>
+<header>
+    <ul>
+        <li>
+            <a>首页</a>
+        </li>
+    </ul>
+</header>
+<div id="main-container">
+    {{> login}}
+</div>
+<footer>
+    <span>This WebPage Is Created By Lijianhua</span>
+</footer>
+</body>
+
+<template name="student">
+    <div class="navigation">{{> studentNavigation}}</div>
+    <div class="right-container">{{> allhomework}}</div>
+</template>
+
+<template name="teacher">
+    <div class="navigation">{{> teacherNavigation}}</div>
+    <div class="right-container">{{> allhomework}}</div>
+</template>
+
+<template name="login">
+
+
+    <img src="images/backgroundImage.jpg" id="firstImage">
+
+    <div id="login-container">
+        <form name="loginForm">
+            <fieldset>
+                <h2>作业提交系统</h2>
+                <div id="username">
+                    <label class="label-area">
+                        <span class="background-icon-area"></span>
+                    </label>
+                    <input type="text" class="input-text-area" placeholder="填写你的学号 例如:12330165">
+                </div>
+                <div id="password">
+                    <label class="label-area">
+                        <span class="background-icon-area"></span>
+                    </label>
+                    <input type="password" class="input-text-area">
+                </div>
+                <div class="submit-button1">
+                    <input type="button" value="登 录">
+                </div>
+                <div class="submit-button1">
+                    <input type="button" value="注 册">
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</template>
+
+<template name="allhomework">
+    <div id="list-container">
+        <h1>课程人员实况表</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>标题</th>
+                <th>时间</th>
+                <th>内容</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {{#each homeworks}}
+            <tr>
+                <td>{{title}}</td>
+                <td>{{deadline}}</td>
+                <td>{{content}}</td>
+                <td><input type="button" value="查看详情"></td>
+            </tr>
+            {{/each}}
+            </tbody>
+        </table>
+    </div>
+</template>
+
+<template name="studentNavigation">
+    <div>
+        <ul>
+            <li>
+                <a id="lookHomework">查看所有作业</a>
+            </li>
+            <li>
+                <a id="uploadHomework">提交作业</a>
+            </li>
+            <li>
+                <a id="Register">注册</a>
+            </li>
+        </ul>
+    </div>
+</template>
+
+<template name="uploader">
+    <div id="uploader-container">
+        <form>
+            <select name="title">
+                {{#each titles}}
+                    <option>{{title}}</option>
+                {{/each}}
+            </select>
+            <input type="file" value="上传文件" name="file" id="file" class="invisible">
+            <label id="uploader-button">上传文件</label>
+            <input type="text" disabled="true" id="filename">
+            <input type="button" id="submit-button" value="提 交">
+        </form>
+        <progress></progress>
+    </div>
+</template>
+
+<template name="register">
+    <div id="register-container">
+        <form method="post">
+            <fieldset>
+                <label class="label-area">
+                    <span class="span-area">学号</span>
+                </label>
+                <input type="text" class="input-text-area" name="studentID">
+                <label class="label-area">
+                    <span class="span-area">密码</span>
+                </label>
+                <input type="password" class="input-text-area" name="password">
+                <label class="label-area">
+                    <span class="span-area">姓名</span>
+                </label>
+                <input type="text" class="input-text-area" name="name">
+                <label class="label-area">
+                    <span class="span-area">性别</span>
+                </label>
+                <input type="text" class="input-text-area" name="sexprefer">
+                <label class="label-area">
+                    <span class="span-area">小组</span>
+                </label>
+                <input type="text" class="input-text-area" name="group">
+                <label class="label-area">
+                    <span class="span-area">手机</span>
+                </label>
+                <input type="text" class="input-text-area" name="phonenumber">
+                <label class="label-area">
+                    <span class="span-area">邮箱</span>
+                </label>
+                <input type="text" class="input-text-area" name="email">
+            </fieldset>
+            <div class="submit-button2">
+                <input type="button" value="注 册">
+            </div>
+        </form>
+    </div>
+</template>
+
+<template name="sponsorHomeWork">
+    <div id="register-container">
+        <form method="post">
+            <fieldset>
+                <input type="text" class="input-text-area2" name="title" placeholder="标题">
+                <input type="text" class="input-text-area2" name="deadline" placeholder="截止时间">
+                <input type="text" class="input-text-area3" name="content" placeholder="详细内容">
+            </fieldset>
+            <div class="submit-button3">
+                <input type="button" value="发 布">
+            </div>
+        </form>
+    </div>
+</template>
+
+<template name="teacherNavigation">
+    <div>
+        <ul>
+            <li>
+                <a id="lookHomework">查看所有作业</a>
+            </li>
+            <li>
+                <a id="sponsorHomework">发布作业</a>
+            </li>
+            <li>
+                <a id="downloadHomework">下载作业</a>
+            </li>
+        </ul>
+    </div>
+</template>
+
