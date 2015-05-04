@@ -1,0 +1,61 @@
+{
+  "dependencies": {
+    "busboy": {
+      "version": "0.2.9",
+      "dependencies": {
+        "dicer": {
+          "version": "0.2.3",
+          "dependencies": {
+            "streamsearch": {
+              "version": "0.1.2"
+            }
+          }
+        },
+        "readable-stream": {
+          "version": "1.1.13",
+          "dependencies": {
+            "core-util-is": {
+              "version": "http://registry.cnpmjs.org/core-util-is/download/core-util-is-1.0.1.tgz"
+            },
+            "isarray": {
+              "version": "0.0.1"
+            },
+            "string_decoder": {
+              "version": "http://registry.cnpmjs.org/string_decoder/download/string_decoder-0.10.31.tgz"
+            },
+            "inherits": {
+              "version": "http://registry.cnpmjs.org/inherits/download/inherits-2.0.1.tgz"
+            }
+          }
+        }
+      }
+    },
+    "multer": {
+      "version": "0.1.8",
+      "dependencies": {
+        "mkdirp": {
+          "version": "http://registry.cnpmjs.org/mkdirp/download/mkdirp-0.3.5.tgz"
+        },
+        "qs": {
+          "version": "1.2.2"
+        },
+        "type-is": {
+          "version": "1.5.7",
+          "dependencies": {
+            "media-typer": {
+              "version": "0.3.0"
+            },
+            "mime-types": {
+              "version": "2.0.10",
+              "dependencies": {
+                "mime-db": {
+                  "version": "1.8.0"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
