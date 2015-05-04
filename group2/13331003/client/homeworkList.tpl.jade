@@ -1,0 +1,30 @@
+#homeworkList
+
+  p homeworkList
+
+  select.homeworkList(name='homework')
+    option(value='')
+    each homeworkList
+      option(value='#{_id}') #{title}
+
+  if selectedHomework
+    ul
+      li title: #{selectedHomework.title}
+      li content: #{selectedHomework.content}
+      li score: #{selectedHomework.score}
+
+  else
+    ul
+      li title: None
+      li content: None
+      li score: None
+
+
+
+  form.score
+    if isAfterDeadline
+      input(type='text', name='point')
+      input(type='submit', value='score')
+    else
+      input(type='text', name='point', disabled)
+      input(type='submit', value='score', disabled)

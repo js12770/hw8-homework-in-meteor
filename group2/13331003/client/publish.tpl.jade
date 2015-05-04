@@ -1,0 +1,17 @@
+#publish.hide
+
+  p publish an assignment
+  button.homepage-button homepage
+  form.publish
+    div
+      span title:
+      input(type='text', name='title', required)
+    div
+      span deadline:
+      input(type='date', name='deadline', required)
+    div
+      span content:
+      textarea(name='content')
+    div
+      span publish:
+      input(type='submit', value='publish', required)

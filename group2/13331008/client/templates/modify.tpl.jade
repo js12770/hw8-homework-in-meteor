@@ -1,0 +1,22 @@
+#modify
+  button.homepage-button.ui.button.green homepage
+
+  .ui.divider.hidden
+
+  form.modify.ui.form.segment
+    .ui.label.ribbon.teal modify an assignment
+
+    .ui.divider.hidden
+
+    .two.fields
+      .field
+        label title:
+        input(type='text', name='title', value='#{selectedAssignment.title}', required)
+      .field
+        label deadline:
+        input(type='date', name='deadline', value='#{selectedAssignment.deadline}', reuqired)
+    .field
+      label content:
+      textarea(name='content', reuqired) #{selectedAssignment.content}
+    div
+      button.modify-button.ui.button.blue modify

@@ -1,0 +1,88 @@
+if currentUser
+	if isInRole 'teacher'
+		div.container
+			div.row
+				div.col-sm-6.col-md-6.col-md-offset-3
+					#user
+						h1.text-center.login-title Welcome #{currentUser.username} teacher
+							br
+							div.panel.panel-info(style = "margin-top:30px")
+								div.panel-heading
+									p 基本信息
+								div.panel-body(style = "padding:0")
+									table.table.table-bordered(style = "margin:0")
+										tbody
+											tr
+												td 姓名
+												td #{currentUser.username}
+											tr
+												td 邮箱
+												td #{currentUser.email}
+			br
+			div.panel.panel-info
+				div.panel-heading
+					p 作业要求：
+				div.panel-body
+					p #{requirment}
+				table.table.table-bordered
+					body
+						tr.text-center 
+							td 截止日期
+							td #{deadline}
+			BR
+			if assigns
+				p 所有作业
+								
+				form 
+					table.table.table-bordered
+						thead
+							tr
+								th 姓名
+								th 作业
+								if deadlined
+									th 分数 
+						tbody
+							each student in assigns
+								tr 
+									td #{student.name}
+									td #{student.assignment}
+									if deadlined
+										if student.score is '未评分'
+											td
+												input(type='text', name='score_[]', class='form-control', placeholder='Score',required)
+										else
+											td 	#{student.score}
+					if deadlined
+						button(class='btn btn-lg btn-primary btn-block givescores') Submit
+			br
+			br
+			div.panel.panel-info
+				div.panel-heading
+					p 创建新作业：
+				div.panel-body
+					form
+						textarea(name='onlyrequirment',rows='6', cols='190',class='form-control', placeholder='Requirment',required) 
+						table.table.table-bordered
+							body
+								tr.text-center 
+									td 截止日期(格式：xxxx/xx/xx xx:xx:xx)
+									td 
+										input(type='text', name='onlydeadline' class='form-control', placeholder='Deadline',required)
+						button(class='btn btn-lg btn-primary btn-block createnewone') Submit
+			br
+			div.panel.panel-info
+				div.panel-heading
+					p 修改作业要求：
+				div.panel-body					
+					form
+						textarea(name='newrequirment',rows='6', cols='190',class='form-control',placeholder='Requirment')
+						button(class='btn btn-lg btn-primary btn-block modifyR') Submit
+			br
+			div.panel.panel-info
+				div.panel-heading
+					p 修改截止时间(格式：xxxx/xx/xx xx:xx:xx)：
+				div.panel-body					
+					form
+						input(type='text', name='newdeadline' class='form-control', placeholder='Deadline',required)
+						button(class='btn btn-lg btn-primary btn-block modifyD') Submit
+	a(hclass='text-center new-account signout_') Sign Out		

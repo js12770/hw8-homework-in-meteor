@@ -1,0 +1,32 @@
+/* CSS declarations go here */
+.main {
+  width: 70%;
+  margin: auto;
+}
+
+.header h1.system-name {
+  display: inline-block;
+  text-align: right;
+  margin-bottom: 0;
+  margin-right: 1em;
+}
+
+.header {
+  margin-top: 1.5em;
+}
+
+.publish-button, #modify .modify-button, #submit .submit-button, .homepage-button {
+  float: right;
+}
+
+#publish .ui.divider, #modify .ui.divider, #submit .ui.divider {
+  clear: both;
+}
+
+.ui.label {
+  font-size: 1.2em;
+}
+
+#assignmentList .modify-button {
+  margin-right: 2em;
+}

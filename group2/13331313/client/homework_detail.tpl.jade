@@ -1,0 +1,35 @@
+if (isState 'hwDetails')
+	div.homework-detail
+		a(href='/', class='hw-list') homework-list
+		div.jumbotron
+			span.deadline deadline: #{homework.deadline}
+			h1 #{homework.title}
+			p #{homework.require}
+			if isInRole 'admin'
+				a(href='/', class='edit-hw')
+					span(class="glyphicon glyphicon-pencil edit-hw")
+		unless isInRole 'admin'
+			if handinV
+				div.handin
+					h1 Handin new answer
+					form(class='form', width='90%')
+						textarea(type='text', name='content', rows="15", class='form-control', placeholder='input here',required, autofocus)
+						button(class='btn btn-lg btn-primary btn-block submit') Handin
+		h1 Answers
+		each answers
+			li.list-group-item
+				div(class="list-group-item-text details")
+					form(class='form-grade', maxWidth='5px')
+						.input-group
+							span(class="input-group-addon") By #{author}
+							span.input-group-addon grade
+							if isInRole 'admin'
+								unless handinV
+									span(class="input-group-addon submit-grade")
+										button(class='updateGrade') updateGrade
+							input(width='50px', type='text', name='grade', class='form-control',required, autofocus, size='3', value='#{grade}')
+
+				p.list-group-item-text #{content}
+	unless isInRole 'admin'
+		script
+			$("input[name='grade']").attr('readonly','true')

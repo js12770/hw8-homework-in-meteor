@@ -1,0 +1,57 @@
+#homeworkList.ui.segment
+
+  .ui.label.ribbon.teal HomeworkList
+
+  .ui.divider.hidden
+
+  .ui.form
+    .two.fields
+      .field
+        select.ui.dropdown.homeworkList(name='homework')
+          option(value='') Homework
+          each homeworkList
+            option(value='#{_id}') #{title}
+
+      .field
+
+  .ui.divider.hidden
+
+  if selectedHomework
+    form.ui.form
+      .two.fields
+        .field
+          label title
+          input(type='text', name='title',value='#{selectedHomework.title}' ,disabled)
+        .field
+          label score
+          input(type='text', value='#{selectedHomework.score}' ,disabled)
+
+      .field
+        label content:
+        textarea(name='content',disabled) #{selectedHomework.content}
+
+  else
+    form.ui.form
+      .two.fields
+        .field
+          label title
+          input(type='text', name='title', disabled)
+        .field
+          label score
+          input(type='text', disabled)
+
+
+      .field
+        label content:
+        textarea(name='content', disabled)
+
+  .ui.divider.hidden
+
+  form.score
+    .ui.input
+      if isAfterDeadline
+        input(type='text', name='point')
+        button.ui.button.blue score
+      else
+        input(type='text', name='point')
+        button.ui.button.blue(disabled) score
