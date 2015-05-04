@@ -1,0 +1,65 @@
+<template name="detail">
+  <div class="body-wrapper">
+    <div class="row">
+    <div class="col s12">
+      <ul class="tabs">
+        <li class="tab col s3"><a class="active" href="#requirement">Requirement</a></li>
+        <li class="tab col s3"><a href="#homeworks">Homeworks</a></li>
+      </ul>
+    </div>
+    <div id="requirement" class="col s12">
+        <h2>{{title}}</h2>
+        <p>{{description}}</p>
+    </div>
+    <div id="homeworks" class="col s12">
+        <div class="row">
+          <div class="card-panel teal" style="color: #fff;">
+            <h5><i class="mdi-action-event"></i> DEADLINE</h5>
+            <p>{{toNiceString deadline}}</p>
+          </div>
+        </div>
+
+         <ul class="collection">
+          {{#each getHwList}}
+            <li class="collection-item avatar">
+              <i class="mdi-file-folder circle green"></i>
+              <span class="title">{{metadata.studentName}}-{{original.name}}</span>
+              <p>{{toNiceString uploadedAt}}
+              </p>
+              {{#if scoreValid}}
+              <a href="{{url download=true}}" class="secondary-content"><i class="mdi-file-cloud-download"></i></a>
+              <form action="#" class="scoreform">
+                <p class="range-field">
+                  {{#if gaveScore metadata.score}}
+                  <input type="range" name="getscore" min="0" max="100" value="{{metadata.score}}">
+                  {{else}}
+                  <input type="range" name="getscore" min="0" max="100" value="50">
+                  {{/if}}
+                </p>
+                <input type="hidden" name="homeworkid" value="{{_id}}">
+              </form>
+              {{/if}}
+        
+            </li>
+          {{/each}}
+          </ul>
+          {{#if submitValid}}
+            <h5 style="margin-top: 40px; opacity: .4;"><i class="mdi-file-cloud-upload"></i>  SUBMIT YOUR HOMEWORK</h5>
+            <form action="/files" method="post" enctype="multipart/form-data">
+              <div class="file-field input-field">
+                <input class="file-path validate" type="text"/>
+                <div class="btn">
+                  <span>File</span>
+                  <input id="upload" type="file" name="homework"/>
+                  <input type="hidden" name="requirement" value="{{alias}}"/>
+                </div>
+              </div>
+            </form>
+          {{/if}}
+      </div>
+      <div class="fixed-action-btn" style="bottom: 45px; right: 45px;">
+        <a class="btn-floating btn-large waves-effect waves-light" href="/modify/{{alias}}"><i class="mdi-editor-format-paint"></i></a>
+      </div>
+  </div>
+</div>
+</template>
